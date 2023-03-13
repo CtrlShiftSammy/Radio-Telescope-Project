@@ -1,0 +1,61 @@
+#!/bin/bash
+################################################################################
+#
+# File:    get_packages
+# Project: OpenSonATA
+# Authors: SigBlips
+#
+# Copyright 2011 The SETI Institute
+#
+# OpenSonATA is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# OpenSonATA is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with OpenSonATA.  If not, see<http://www.gnu.org/licenses/>.
+# 
+# Implementers of this code are requested to include the caption
+# "Licensed through SETI" with a link to setiQuest.org.
+# 
+# For alternate licensing arrangements, please contact
+# The SETI Institute at www.seti.org or setiquest.org. 
+#
+################################################################################
+
+PACKAGES_VERSION=packages_1.0
+PACKAGES_DIR=packages
+PACKAGES_FILE=$PACKAGES_VERSION.tar.gz
+
+cd ..
+wget http://setiquest.org/sonata_files/$PACKAGES_FILE
+tar zxvf $PACKAGES_FILE
+rm -fr $PACKAGES_FILE
+mv $PACKAGES_VERSION $PACKAGES_DIR
+
+PACKAGES_PATH=`pwd`/$PACKAGES_DIR
+ACE_ROOT=$PACKAGES_PATH/ACE_wrappers
+
+echo ""
+echo "###########################################################"
+echo ""
+echo "Package loading has finished. You now need to configure environment variables."
+echo "If you are using the bash shell please add these lines to your .bashrc file:"
+echo ""
+echo "export LD_LIBRARY_PATH=$ACE_ROOT/ace:$ACE_ROOT/lib:$PACKAGES_PATH/lib:\$LD_LIBRARY_PATH"
+echo ""
+echo "ulimit -s unlimited"
+echo ""
+echo ""
+
+echo "Or if you are using the csh shell then add these lines to your .cshrc file:"
+echo ""
+echo "setenv LD_LIBRARY_PATH \"$ACE_ROOT/ace:$ACE_ROOT/lib:$PACKAGES_PATH/lib:\$LD_LIBRARY_PATH\""
+echo ""
+echo "limit stacksize unlimited"
+

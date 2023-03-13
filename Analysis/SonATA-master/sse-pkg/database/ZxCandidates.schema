@@ -1,0 +1,10 @@
+-- -----------------------------------------------------------------------
+-- ZxCandidates
+-- -----------------------------------------------------------------------
+drop table if exists ZxCandidateSignals;
+create table ZxCandidateSignals like CandidateSignals;
+
+-- additional indexes to speed up recent rfi mask related queries:
+alter table ZxCandidateSignals add index startTimeIndex (activityStartTime);
+alter table ZxCandidateSignals add index targetIdIndex (targetId);
+
