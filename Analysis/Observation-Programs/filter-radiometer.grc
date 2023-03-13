@@ -86,26 +86,26 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    beta: '6.76'
+    beta: '1'
     comment: ''
     decim: '1'
     gain: '1'
-    high_cutoff_freq: (bandpass_bandwidth / 2)
+    high_cutoff_freq: center_freq + (bandpass_bandwidth / 2)
     interp: '1'
-    low_cutoff_freq: (bandpass_bandwidth / 2)
+    low_cutoff_freq: center_freq - (bandpass_bandwidth / 2)
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: '1'
-    win: window.WIN_KAISER
+    win: window.WIN_RECTANGULAR
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 220.0]
+    coordinate: [224, 300.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_rms_xx_0
   id: blocks_rms_xx
   parameters:
@@ -120,7 +120,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 392.0]
+    coordinate: [472, 344.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -723,9 +723,8 @@ blocks:
     state: true
 
 connections:
-- [band_pass_filter_0, '0', blocks_rms_xx_0, '0']
 - [blocks_rms_xx_0, '0', qtgui_number_sink_0, '0']
-- [rtlsdr_source_0, '0', band_pass_filter_0, '0']
+- [rtlsdr_source_0, '0', blocks_rms_xx_0, '0']
 - [rtlsdr_source_0, '0', qtgui_freq_sink_x_0, '0']
 - [rtlsdr_source_0, '0', qtgui_time_sink_x_0, '0']
 

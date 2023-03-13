@@ -25,7 +25,6 @@ from gnuradio import qtgui
 from gnuradio.filter import firdes
 import sip
 from gnuradio import blocks
-from gnuradio import filter
 from gnuradio import gr
 from gnuradio.fft import window
 import sys
@@ -226,24 +225,13 @@ class FFT_Plot(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.blocks_rms_xx_0 = blocks.rms_cf(0.0001)
-        self.band_pass_filter_0 = filter.fir_filter_ccf(
-            1,
-            firdes.band_pass(
-                1,
-                samp_rate,
-                ((bandpass_bandwidth / 2)),
-                ((bandpass_bandwidth / 2)),
-                1,
-                window.WIN_KAISER,
-                6.76))
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.band_pass_filter_0, 0), (self.blocks_rms_xx_0, 0))
         self.connect((self.blocks_rms_xx_0, 0), (self.qtgui_number_sink_0, 0))
-        self.connect((self.rtlsdr_source_0, 0), (self.band_pass_filter_0, 0))
+        self.connect((self.rtlsdr_source_0, 0), (self.blocks_rms_xx_0, 0))
         self.connect((self.rtlsdr_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.rtlsdr_source_0, 0), (self.qtgui_time_sink_x_0, 0))
 
@@ -261,7 +249,6 @@ class FFT_Plot(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate, ((self.bandpass_bandwidth / 2)), ((self.bandpass_bandwidth / 2)), 1, window.WIN_KAISER, 6.76))
         self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
@@ -285,7 +272,6 @@ class FFT_Plot(gr.top_block, Qt.QWidget):
 
     def set_bandpass_bandwidth(self, bandpass_bandwidth):
         self.bandpass_bandwidth = bandpass_bandwidth
-        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate, ((self.bandpass_bandwidth / 2)), ((self.bandpass_bandwidth / 2)), 1, window.WIN_KAISER, 6.76))
 
 
 
