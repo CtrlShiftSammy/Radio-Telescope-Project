@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio RADIOMETER C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the RADIOMETER GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

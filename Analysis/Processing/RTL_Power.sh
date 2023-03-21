@@ -1,0 +1,1 @@
+rtl_power -f 1449.5M:1450.5M:1M -g 1 -i 10 -e 5m 'Readings/Trash/band_survey.csv'

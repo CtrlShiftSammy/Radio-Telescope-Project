@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: FFT_Plot
+    id: radiometer
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Not titled yet
+    title: Radiometer
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -33,19 +33,19 @@ options:
     state: enabled
 
 blocks:
-- name: bandpass_bandwidth
+- name: csvfile
   id: variable
   parameters:
     comment: ''
-    value: 80e6
+    value: prefix + timenow +"_AZ"+az+"_EL"+el +".csv"
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 344.0]
+    coordinate: [500, 13]
     rotation: 0
     state: true
-- name: center_freq
+- name: frequency
   id: variable
   parameters:
     comment: ''
@@ -54,78 +54,260 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 200.0]
+    coordinate: [264, 8.0]
     rotation: 0
     state: true
-- name: channel_width
-  id: variable
+- name: integration_select
+  id: variable_qtgui_chooser
   parameters:
     comment: ''
-    value: 200E3
+    gui_hint: ''
+    label: ''
+    label0: 0.5 s
+    label1: 2 s
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: combo_box
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 272.0]
+    coordinate: [752, 16.0]
+    rotation: 0
+    state: true
+- name: prefix
+  id: variable
+  parameters:
+    comment: ''
+    value: '"/run/media/sammy/Projects/Radio-Telescope-Project/Analysis/"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 8.0]
     rotation: 0
     state: true
 - name: samp_rate
   id: variable
   parameters:
     comment: ''
-    value: 2E6
+    value: 2.5E6
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 128.0]
+    coordinate: [160, 8.0]
     rotation: 0
     state: enabled
-- name: band_pass_filter_0
-  id: band_pass_filter
+- name: blocks_complex_to_float_0
+  id: blocks_complex_to_float
   parameters:
     affinity: ''
     alias: ''
-    beta: '1'
     comment: ''
-    decim: '1'
-    gain: '1'
-    high_cutoff_freq: center_freq + (bandpass_bandwidth / 2)
-    interp: '1'
-    low_cutoff_freq: center_freq - (bandpass_bandwidth / 2)
     maxoutbuf: '0'
     minoutbuf: '0'
-    samp_rate: samp_rate
-    type: fir_filter_ccf
-    width: '1'
-    win: window.WIN_RECTANGULAR
+    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [224, 300.0]
+    coordinate: [1432, 176.0]
     rotation: 0
-    state: disabled
-- name: blocks_rms_xx_0
-  id: blocks_rms_xx
+    state: true
+- name: blocks_complex_to_float_1
+  id: blocks_complex_to_float
   parameters:
     affinity: ''
     alias: ''
-    alpha: '0.0001'
     comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1760, 272.0]
+    rotation: 0
+    state: enabled
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 232.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_real_0
+  id: blocks_complex_to_real
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 176.0]
+    rotation: 0
+    state: enabled
+- name: blocks_float_to_complex_0
+  id: blocks_float_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 232.0]
+    rotation: 0
+    state: true
+- name: blocks_float_to_complex_1
+  id: blocks_float_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 312.0]
+    rotation: 0
+    state: true
+- name: blocks_keep_one_in_n_0
+  id: blocks_keep_one_in_n
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1128, 296.0]
+    rotation: 0
+    state: true
+- name: blocks_keep_one_in_n_1
+  id: blocks_keep_one_in_n
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1600, 288.0]
+    rotation: 0
+    state: enabled
+- name: blocks_moving_average_xx_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '1000'
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1432, 256.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     type: complex
+    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [472, 344.0]
+    coordinate: [1256, 288.0]
     rotation: 0
     state: true
-- name: qtgui_freq_sink_x_0
-  id: qtgui_freq_sink_x
+- name: blocks_selector_0
+  id: blocks_selector
   parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: integration_select
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [928, 256.0]
+    rotation: 0
+    state: true
+- name: qtgui_histogram_sink_x_0
+  id: qtgui_histogram_sink_x
+  parameters:
+    accum: 'False'
     affinity: ''
     alias: ''
     alpha1: '1.0'
@@ -138,10 +320,9 @@ blocks:
     alpha7: '1.0'
     alpha8: '1.0'
     alpha9: '1.0'
-    autoscale: 'False'
-    average: '0.1'
+    autoscale: 'True'
     axislabels: 'True'
-    bw: samp_rate
+    bins: '100'
     color1: '"blue"'
     color10: '"dark blue"'
     color2: '"red"'
@@ -153,36 +334,43 @@ blocks:
     color8: '"dark red"'
     color9: '"dark green"'
     comment: ''
-    ctrlpanel: 'False'
-    fc: center_freq
-    fftsize: '1024'
-    freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
-    label: Relative Gain
     label1: ''
-    label10: ''''''
-    label2: ''''''
-    label3: ''''''
-    label4: ''''''
-    label5: ''''''
-    label6: ''''''
-    label7: ''''''
-    label8: ''''''
-    label9: ''''''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
     legend: 'True'
-    maxoutbuf: '0'
-    minoutbuf: '0'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
     name: '""'
     nconnections: '1'
-    norm_window: 'False'
-    showports: 'False'
-    tr_chan: '0'
-    tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
-    tr_tag: '""'
-    type: complex
-    units: dB
+    size: '1024'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    type: float
     update_time: '0.10'
     width1: '1'
     width10: '1'
@@ -194,16 +382,15 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: window.WIN_BLACKMAN_hARRIS
-    ymax: '10'
-    ymin: '-140'
+    xmax: '1'
+    xmin: '-1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 24.0]
+    coordinate: [560, 88.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -232,7 +419,7 @@ blocks:
     factor7: '1'
     factor8: '1'
     factor9: '1'
-    graph_type: qtgui.NUM_GRAPH_HORIZ
+    graph_type: qtgui.NUM_GRAPH_NONE
     gui_hint: ''
     label1: ''
     label10: ''
@@ -264,7 +451,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [800, 368.0]
+    coordinate: [1616, 144.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -361,9 +548,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 120.0]
+    coordinate: [1432, 368.0]
     rotation: 0
     state: true
+- name: radiometer_csv_file_writer_0
+  id: radiometer_csv_file_writer
+  parameters:
+    affinity: ''
+    alias: ''
+    az: ''
+    comment: ''
+    el: ''
+    prefix: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1944, 248.0]
+    rotation: 0
+    state: enabled
 - name: rtlsdr_source_0
   id: rtlsdr_source
   parameters:
@@ -539,7 +742,7 @@ blocks:
     dc_offset_mode7: '0'
     dc_offset_mode8: '0'
     dc_offset_mode9: '0'
-    freq0: center_freq
+    freq0: frequency
     freq1: 100e6
     freq10: 100e6
     freq11: 100e6
@@ -704,7 +907,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     sample_rate: samp_rate
-    sync: sync
+    sync: none
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -718,15 +921,65 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [160, 20.0]
+    coordinate: [72, 108.0]
+    rotation: 0
+    state: true
+- name: single_pole_iir_filter_xx_0
+  id: single_pole_iir_filter_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: 1.0 / (samp_rate * 2)
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 240.0]
+    rotation: 0
+    state: true
+- name: single_pole_iir_filter_xx_1
+  id: single_pole_iir_filter_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: 1.0 / (samp_rate * 0.5)
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 320.0]
     rotation: 0
     state: true
 
 connections:
-- [blocks_rms_xx_0, '0', qtgui_number_sink_0, '0']
-- [rtlsdr_source_0, '0', blocks_rms_xx_0, '0']
-- [rtlsdr_source_0, '0', qtgui_freq_sink_x_0, '0']
-- [rtlsdr_source_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_complex_to_float_0, '0', qtgui_number_sink_0, '0']
+- [blocks_complex_to_float_1, '0', radiometer_csv_file_writer_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_float_to_complex_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_float_to_complex_1, '0']
+- [blocks_complex_to_real_0, '0', qtgui_histogram_sink_x_0, '0']
+- [blocks_float_to_complex_0, '0', single_pole_iir_filter_xx_0, '0']
+- [blocks_float_to_complex_1, '0', single_pole_iir_filter_xx_1, '0']
+- [blocks_keep_one_in_n_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_keep_one_in_n_1, '0', blocks_complex_to_float_1, '0']
+- [blocks_moving_average_xx_0, '0', blocks_keep_one_in_n_1, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_complex_to_float_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_moving_average_xx_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_selector_0, '0', blocks_keep_one_in_n_0, '0']
+- [rtlsdr_source_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [rtlsdr_source_0, '0', blocks_complex_to_real_0, '0']
+- [single_pole_iir_filter_xx_0, '0', blocks_selector_0, '0']
+- [single_pole_iir_filter_xx_1, '0', blocks_selector_0, '1']
 
 metadata:
   file_format: 1
