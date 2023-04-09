@@ -41,9 +41,7 @@ blocks:
     label: ''
     min_len: '200'
     orient: QtCore.Qt.Horizontal
-    outputmsgname: value
     rangeType: float
-    showports: 'False'
     start: '0'
     step: '0.001'
     stop: '2'
@@ -76,9 +74,7 @@ blocks:
     label: ''
     min_len: '200'
     orient: QtCore.Qt.Horizontal
-    outputmsgname: value
     rangeType: float
-    showports: 'False'
     start: 90E6
     step: 0.001E6
     stop: 110E6
@@ -136,7 +132,7 @@ blocks:
     bus_structure: null
     coordinate: [160, 256.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: analog_wfm_rcv_0
   id: analog_wfm_rcv
   parameters:
@@ -153,7 +149,7 @@ blocks:
     bus_structure: null
     coordinate: [864, 240.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: audio_sink_0
   id: audio_sink
   parameters:
@@ -170,7 +166,7 @@ blocks:
     bus_structure: null
     coordinate: [864, 384.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
   parameters:
@@ -188,7 +184,7 @@ blocks:
     bus_structure: null
     coordinate: [864, 320.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_multiply_xx_0
   id: blocks_multiply_xx
   parameters:
@@ -206,7 +202,7 @@ blocks:
     bus_structure: null
     coordinate: [456, 248.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: low_pass_filter_0
   id: low_pass_filter
   parameters:
@@ -230,7 +226,7 @@ blocks:
     bus_structure: null
     coordinate: [632, 276.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: osmosdr_source_0
   id: osmosdr_source
   parameters:
@@ -847,6 +843,67 @@ blocks:
     coordinate: [456, 120.0]
     rotation: 0
     state: true
+- name: qtgui_waterfall_sink_x_0
+  id: qtgui_waterfall_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '0'
+    color10: '0'
+    color2: '0'
+    color3: '0'
+    color4: '0'
+    color5: '0'
+    color6: '0'
+    color7: '0'
+    color8: '0'
+    color9: '0'
+    comment: ''
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    int_max: '10'
+    int_min: '-140'
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    showports: 'False'
+    type: complex
+    update_time: '0.10'
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 32.0]
+    rotation: 0
+    state: true
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -866,7 +923,7 @@ blocks:
     bus_structure: null
     coordinate: [864, 128.0]
     rotation: 0
-    state: true
+    state: disabled
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
@@ -878,8 +935,9 @@ connections:
 - [osmosdr_source_0, '0', blocks_multiply_xx_0, '0']
 - [osmosdr_source_0, '0', qtgui_freq_sink_x_0, '0']
 - [osmosdr_source_0, '0', qtgui_time_sink_x_0, '0']
+- [osmosdr_source_0, '0', qtgui_waterfall_sink_x_0, '0']
 - [rational_resampler_xxx_0, '0', analog_wfm_rcv_0, '0']
 
 metadata:
   file_format: 1
-  grc_version: 3.10.4.0
+  grc_version: 3.10.5.0

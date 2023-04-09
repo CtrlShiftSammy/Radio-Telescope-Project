@@ -1,6 +1,9 @@
 # Import necessary libraries
 import virgo
 import time
+from datetime import datetime
+import os
+
 
 # Define function to observe and plot data for given duration
 def observeAndPlot(d):
@@ -27,11 +30,11 @@ def observeAndPlot(d):
     # Get current time and format it
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S")
-    date = ""
+    date = datetime.now().strftime("%d-%m-%Y")
 
     # Define the file paths and names for saving the observation data and plots
-    #reading_location = '/run/media/sammy/Projects/Radio-Telescope-Project/Readings/ASRT/' + date + '/'
-    reading_location = '/run/media/sammy/Projects/Radio-Telescope-Project/Readings/ASRT/14-03-2023 (ECE Lab)/'
+    reading_location = '/run/media/sammy/Projects/Radio-Telescope-Project/Readings/ASRT/' + date + '/'
+    #reading_location = '/run/media/sammy/Projects/Radio-Telescope-Project/Readings/ASRT/05-04-2023/'
     reading_name = 'virgo-observation_' + current_time + '.dat'
     obs_file_name = reading_location + reading_name
 
@@ -44,6 +47,9 @@ def observeAndPlot(d):
     power_name = 'power_' + current_time + '.csv'
     power_file_name = reading_location + power_name
 
+    if not os.path.exists(reading_location):
+        os.makedirs(reading_location)
+
     # Begin data acquisition
     virgo.observe(obs_parameters=obs, obs_file=obs_file_name)
 
@@ -54,7 +60,7 @@ def observeAndPlot(d):
             dB=True, spectra_csv=spectrum_file_name, power_csv=power_file_name, plot_file= plot_file_name)
 
 # Define an array of durations to observe and plot for
-time_array = [120]
+time_array = [3600, 3600]
 
 # Loop through the durations and observe and plot for each
 for t in time_array:

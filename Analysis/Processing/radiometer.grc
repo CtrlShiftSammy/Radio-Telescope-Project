@@ -33,18 +33,6 @@ options:
     state: enabled
 
 blocks:
-- name: csvfile
-  id: variable
-  parameters:
-    comment: ''
-    value: prefix + timenow +"_AZ"+az+"_EL"+el +".csv"
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [500, 13]
-    rotation: 0
-    state: true
 - name: frequency
   id: variable
   parameters:
