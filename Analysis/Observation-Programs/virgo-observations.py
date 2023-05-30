@@ -60,7 +60,7 @@ def observeAndPlot(d):
             dB=True, spectra_csv=spectrum_file_name, power_csv=power_file_name, plot_file= plot_file_name)
 
 # Define an array of durations to observe and plot for
-time_array = [3600, 3600]
+time_array = [1800]
 
 # Loop through the durations and observe and plot for each
 for t in time_array:

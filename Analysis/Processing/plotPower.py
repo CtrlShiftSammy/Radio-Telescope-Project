@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import datetime
 
 # Open the file for reading
-with open('Readings/ASRT/26-03-2023/14:03:05_2023-03-26_0_0_power.csv', 'r') as f:
+with open('Readings/ASRT/17-05-2023/05:43:15_Processed_2023-05-17_0_0_power.csv', 'r') as f:
 
     # Initialize empty lists to store the time and power values
     times = []
@@ -27,6 +27,6 @@ plt.xlabel('Time')
 plt.ylabel('Power')
 
 # Adjust the time axis
-plt.xlim([datetime.datetime(2023, 3, 26, 14, 29, 0), datetime.datetime(2023, 3, 26, 14, 59, 0)])
-
+plt.xlim([datetime.datetime(2023, 5, 17, 12, 0, 0), datetime.datetime(2023, 5, 17, 18, 0, 0)])
+plt.ylim(40, 100)
 plt.show()

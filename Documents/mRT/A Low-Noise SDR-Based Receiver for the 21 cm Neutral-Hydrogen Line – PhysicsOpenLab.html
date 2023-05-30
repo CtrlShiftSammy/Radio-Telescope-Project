@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="UTF-8" />
+<link rel="pingback" href="https://physicsopenlab.org/xmlrpc.php" />
+<title>A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line &#8211; PhysicsOpenLab</title>
+<meta property="og:title" content="A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line - PhysicsOpenLab"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Abstract : after the article on the pyramidal horn antenna : Horn Antenna for the 21cm Neutral-Hydro"/>
+<meta property="og:url" content="https://physicsopenlab.org/2020/07/26/sdr-based-receiver-for-the-21-cm-neutral-hydrogen-line/"/>
+<meta property="og:site_name" content="PhysicsOpenLab"/>
+<meta property="og:image" content="https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0.jpg" />
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//stats.wp.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="PhysicsOpenLab &raquo; Feed" href="https://physicsopenlab.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="PhysicsOpenLab &raquo; Comments Feed" href="https://physicsopenlab.org/comments/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/physicsopenlab.org\/wp-includes\/js\/wp-emoji-release.min.js"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){p.clearRect(0,0,i.width,i.height),p.fillText(e,0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(t,0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s("\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!s("\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!s("\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!s("\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css' href='https://physicsopenlab.org/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='jetpack-videopress-video-block-view-css' href='https://physicsopenlab.org/wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-videopress/build/block-editor/blocks/video/view.css?minify=false' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css' href='https://physicsopenlab.org/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css' href='https://physicsopenlab.org/wp-includes/js/mediaelement/wp-mediaelement.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://physicsopenlab.org/wp-includes/css/classic-themes.min.css' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://physicsopenlab.org/wp-content/plugins/contact-form-7/includes/css/styles.css' type='text/css' media='all' />
+<link rel='stylesheet' id='tie-style-css' href='https://physicsopenlab.org/wp-content/themes/sahifa/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='tie-ilightbox-skin-css' href='https://physicsopenlab.org/wp-content/themes/sahifa/css/ilightbox/dark-skin/skin.css' type='text/css' media='all' />
+<link rel='stylesheet' id='Droid+Sans-css' href='https://fonts.googleapis.com/css?family=Droid+Sans%3Aregular%2C700' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css' href='https://physicsopenlab.org/wp-content/plugins/jetpack/css/jetpack.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://physicsopenlab.org/wp-includes/js/jquery/jquery.min.js' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://physicsopenlab.org/wp-includes/js/jquery/jquery-migrate.min.js' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://physicsopenlab.org/wp-json/" /><link rel="alternate" type="application/json" href="https://physicsopenlab.org/wp-json/wp/v2/posts/14300" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://physicsopenlab.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://physicsopenlab.org/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.2.2" />
+<link rel="canonical" href="https://physicsopenlab.org/2020/07/26/sdr-based-receiver-for-the-21-cm-neutral-hydrogen-line/" />
+<link rel='shortlink' href='https://physicsopenlab.org/?p=14300' />
+<link rel="alternate" type="application/json+oembed" href="https://physicsopenlab.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fphysicsopenlab.org%2F2020%2F07%2F26%2Fsdr-based-receiver-for-the-21-cm-neutral-hydrogen-line%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://physicsopenlab.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fphysicsopenlab.org%2F2020%2F07%2F26%2Fsdr-based-receiver-for-the-21-cm-neutral-hydrogen-line%2F&#038;format=xml" />
+	<style>img#wpstats{display:none}</style>
+		<link rel="shortcut icon" href="https://physicsopenlab.org/wp-content/themes/sahifa/favicon.ico" title="Favicon" />
+<!--[if IE]>
+<script type="text/javascript">jQuery(document).ready(function (){ jQuery(".menu-item").has("ul").children("a").attr("aria-haspopup", "true");});</script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="https://physicsopenlab.org/wp-content/themes/sahifa/js/html5.js"></script>
+<script src="https://physicsopenlab.org/wp-content/themes/sahifa/js/selectivizr-min.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<link rel="stylesheet" type="text/css" media="all" href="https://physicsopenlab.org/wp-content/themes/sahifa/css/ie9.css" />
+<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" media="all" href="https://physicsopenlab.org/wp-content/themes/sahifa/css/ie8.css" />
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" media="all" href="https://physicsopenlab.org/wp-content/themes/sahifa/css/ie7.css" />
+<![endif]-->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+<style type="text/css" media="screen">
+
+body{
+	font-family: 'Droid Sans';
+}
+
+#main-nav,
+.cat-box-content,
+#sidebar .widget-container,
+.post-listing,
+#commentform {
+	border-bottom-color: #7b77ff;
+}
+
+.search-block .search-button,
+#topcontrol,
+#main-nav ul li.current-menu-item a,
+#main-nav ul li.current-menu-item a:hover,
+#main-nav ul li.current_page_parent a,
+#main-nav ul li.current_page_parent a:hover,
+#main-nav ul li.current-menu-parent a,
+#main-nav ul li.current-menu-parent a:hover,
+#main-nav ul li.current-page-ancestor a,
+#main-nav ul li.current-page-ancestor a:hover,
+.pagination span.current,
+.share-post span.share-text,
+.flex-control-paging li a.flex-active,
+.ei-slider-thumbs li.ei-slider-element,
+.review-percentage .review-item span span,
+.review-final-score,
+.button,
+a.button,
+a.more-link,
+#main-content input[type="submit"],
+.form-submit #submit,
+#login-form .login-button,
+.widget-feedburner .feedburner-subscribe,
+input[type="submit"],
+#buddypress button,
+#buddypress a.button,
+#buddypress input[type=submit],
+#buddypress input[type=reset],
+#buddypress ul.button-nav li a,
+#buddypress div.generic-button a,
+#buddypress .comment-reply-link,
+#buddypress div.item-list-tabs ul li a span,
+#buddypress div.item-list-tabs ul li.selected a,
+#buddypress div.item-list-tabs ul li.current a,
+#buddypress #members-directory-form div.item-list-tabs ul li.selected span,
+#members-list-options a.selected,
+#groups-list-options a.selected,
+body.dark-skin #buddypress div.item-list-tabs ul li a span,
+body.dark-skin #buddypress div.item-list-tabs ul li.selected a,
+body.dark-skin #buddypress div.item-list-tabs ul li.current a,
+body.dark-skin #members-list-options a.selected,
+body.dark-skin #groups-list-options a.selected,
+.search-block-large .search-button,
+#featured-posts .flex-next:hover,
+#featured-posts .flex-prev:hover,
+a.tie-cart span.shooping-count,
+.woocommerce span.onsale,
+.woocommerce-page span.onsale ,
+.woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+.woocommerce-page .widget_price_filter .ui-slider .ui-slider-handle,
+#check-also-close,
+a.post-slideshow-next,
+a.post-slideshow-prev,
+.widget_price_filter .ui-slider .ui-slider-handle,
+.quantity .minus:hover,
+.quantity .plus:hover,
+.mejs-container .mejs-controls .mejs-time-rail .mejs-time-current,
+#reading-position-indicator  {
+	background-color:#7b77ff;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color:#7b77ff !important;
+}
+
+#theme-footer,
+#theme-header,
+.top-nav ul li.current-menu-item:before,
+#main-nav .menu-sub-content ,
+#main-nav ul ul,
+#check-also-box {
+	border-top-color: #7b77ff;
+}
+
+.search-block:after {
+	border-right-color:#7b77ff;
+}
+
+body.rtl .search-block:after {
+	border-left-color:#7b77ff;
+}
+
+#main-nav ul > li.menu-item-has-children:hover > a:after,
+#main-nav ul > li.mega-menu:hover > a:after {
+	border-color:transparent transparent #7b77ff;
+}
+
+.widget.timeline-posts li a:hover,
+.widget.timeline-posts li a:hover span.tie-date {
+	color: #7b77ff;
+}
+
+.widget.timeline-posts li a:hover span.tie-date:before {
+	background: #7b77ff;
+	border-color: #7b77ff;
+}
+
+#order_review,
+#order_review_heading {
+	border-color: #7b77ff;
+}
+
+
+body {
+	background-color: #cacccb !important;
+	background-image : url(https://physicsopenlab.org/wp-content/themes/sahifa/images/patterns/body-bg1.png);
+	background-position: top center;
+}
+
+a {
+	color: #1332ad;
+}
+		
+a:hover {
+	color: #000000;
+	text-decoration: underline;
+}
+		
+</style>
+
+<link rel="icon" href="https://physicsopenlab.org/wp-content/uploads/2016/02/cropped-radioattivita-32x32.jpg" sizes="32x32" />
+<link rel="icon" href="https://physicsopenlab.org/wp-content/uploads/2016/02/cropped-radioattivita-192x192.jpg" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://physicsopenlab.org/wp-content/uploads/2016/02/cropped-radioattivita-180x180.jpg" />
+<meta name="msapplication-TileImage" content="https://physicsopenlab.org/wp-content/uploads/2016/02/cropped-radioattivita-270x270.jpg" />
+		<style type="text/css" id="wp-custom-css">
+			.scroll-box {
+    background: #f4f4f4;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    height: 400px; /* maximum height of the box, feel free to change this! */
+    padding: 15px;
+    overflow-y: scroll;
+}		</style>
+		</head>
+<body id="top" class="post-template-default single single-post postid-14300 single-format-standard">
+
+<div class="wrapper-outer">
+
+	<div class="background-cover"></div>
+
+	<aside id="slide-out">
+
+			<div class="search-mobile">
+			<form method="get" id="searchform-mobile" action="https://physicsopenlab.org/">
+				<button class="search-button" type="submit" value="Search"><i class="fa fa-search"></i></button>
+				<input type="text" id="s-mobile" name="s" title="Search" value="Search" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}"  />
+			</form>
+		</div><!-- .search-mobile /-->
+	
+			<div class="social-icons">
+		<a class="ttip-none" title="Rss" href="https://physicsopenlab.org/feed/" target="_blank"><i class="fa fa-rss"></i></a><a class="ttip-none" title="Facebook" href="https://www.facebook.com/lodovico.lappetito" target="_blank"><i class="fa fa-facebook"></i></a>
+			</div>
+
+	
+		<div id="mobile-menu" ></div>
+	</aside><!-- #slide-out /-->
+
+		<div id="wrapper" class="boxed">
+		<div class="inner-wrapper">
+
+		<header id="theme-header" class="theme-header full-logo center-logo">
+						<div id="top-nav" class="top-nav">
+				<div class="container">
+
+							<span class="today-date">Saturday , May 27 2023</span>
+				
+						<div class="search-block">
+						<form method="get" id="searchform-header" action="https://physicsopenlab.org/">
+							<button class="search-button" type="submit" value="Search"><i class="fa fa-search"></i></button>
+							<input class="search-live" type="text" id="s-header" name="s" title="Search" value="Search" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}"  />
+						</form>
+					</div><!-- .search-block /-->
+			<div class="social-icons">
+		<a class="ttip-none" title="Rss" href="https://physicsopenlab.org/feed/" target="_blank"><i class="fa fa-rss"></i></a><a class="ttip-none" title="Facebook" href="https://www.facebook.com/lodovico.lappetito" target="_blank"><i class="fa fa-facebook"></i></a>
+			</div>
+
+	
+	
+				</div><!-- .container /-->
+			</div><!-- .top-menu /-->
+			
+		<div class="header-content">
+
+					<a id="slide-out-open" class="slide-out-open" href="#"><span></span></a>
+		
+			<div class="logo">
+			<h2>								<a title="PhysicsOpenLab" href="https://physicsopenlab.org/">
+					<img src="https://physicsopenlab.org/wp-content/uploads/2016/03/logoPOL.png" alt="PhysicsOpenLab"  /><strong>PhysicsOpenLab Modern DIY Physics Laboratory for Science Enthusiasts</strong>
+				</a>
+			</h2>			</div><!-- .logo /-->
+						<div class="clear"></div>
+
+		</div>
+													<nav id="main-nav" class="fixed-enabled">
+				<div class="container">
+
+				
+					<div class="main-menu"><ul id="menu-main-menu" class="menu"><li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-43"><a href="https://physicsopenlab.org/">Home</a></li>
+<li id="menu-item-772" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-772"><a href="https://physicsopenlab.org/contents/">Index of Posts</a></li>
+<li id="menu-item-50" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-50"><a href="https://physicsopenlab.org/category/italian-posts/">Italian Posts</a></li>
+<li id="menu-item-345" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-345"><a href="https://physicsopenlab.org/category/english-posts/">English Posts</a></li>
+<li id="menu-item-4234" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4234"><a href="https://physicsopenlab.org/low-cost-diy-scientific-equipment/">DIY Scientific Equipment</a></li>
+<li id="menu-item-11831" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-11831"><a href="https://physicsopenlab.org/test-page-for-upload/">Real Time Monitoring</a>
+<ul class="sub-menu menu-sub-content">
+	<li id="menu-item-11901" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11901"><a href="https://physicsopenlab.org/seismic-monitoring/">Seismic Monitoring</a></li>
+	<li id="menu-item-11900" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11900"><a href="https://physicsopenlab.org/geomagnetic-monitoring/">Geomagnetic Field Monitoring</a></li>
+	<li id="menu-item-12272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12272"><a href="https://physicsopenlab.org/cosmic-rays-monitor/">Cosmic Rays Monitor</a></li>
+	<li id="menu-item-14429" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14429"><a href="https://physicsopenlab.org/sid-events-monitor/">SID Events Monitor</a></li>
+</ul>
+</li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23"><a href="https://physicsopenlab.org/about-me/">About PhysicsOpenLab</a>
+<ul class="sub-menu menu-sub-content">
+	<li id="menu-item-15993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15993"><a href="https://physicsopenlab.org/percorsi-didattici/">Pubblicazioni</a></li>
+	<li id="menu-item-8841" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8841"><a href="https://physicsopenlab.org/for-sale/">Professional Services</a></li>
+	<li id="menu-item-2022" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2022"><a href="https://physicsopenlab.org/resources-downloads/">Resources &#038; Downloads</a></li>
+	<li id="menu-item-5832" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5832"><a href="https://physicsopenlab.org/disclaimer-safety/">Disclaimer &#038; Safety</a></li>
+	<li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="https://physicsopenlab.org/privacy-policy/">Privacy Policy</a></li>
+	<li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="https://physicsopenlab.org/terms-of-use/">Terms of Use</a></li>
+</ul>
+</li>
+</ul></div>										<a href="https://physicsopenlab.org/?tierand=1" class="random-article ttip" title="Random Article"><i class="fa fa-random"></i></a>
+					
+					
+				</div>
+			</nav><!-- .main-nav /-->
+					</header><!-- #header /-->
+
+	
+	
+	<div id="main-content" class="container">
+
+	
+	
+	
+	
+	
+	<div class="content">
+
+		
+		<nav id="crumbs"><a href="https://physicsopenlab.org/"><span class="fa fa-home" aria-hidden="true"></span> Home</a><span class="delimiter">/</span><a href="https://physicsopenlab.org/category/english-posts/">English Posts</a><span class="delimiter">/</span><span class="current">A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line</span></nav><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BreadcrumbList","@id":"#Breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"name":"Home","@id":"https:\/\/physicsopenlab.org\/"}},{"@type":"ListItem","position":2,"item":{"name":"English Posts","@id":"https:\/\/physicsopenlab.org\/category\/english-posts\/"}}]}</script>
+		
+
+		
+		<article class="post-listing post-14300 post type-post status-publish format-standard has-post-thumbnail  category-english-posts category-microwaves tag-sdr" id="the-post">
+			
+			<div class="post-inner">
+
+							<h1 class="name post-title entry-title"><span itemprop="name">A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line</span></h1>
+
+						
+<p class="post-meta">
+	
+		
+	<span class="tie-date"><i class="fa fa-clock-o"></i>July 26, 2020</span>	
+	<span class="post-cats"><i class="fa fa-folder"></i><a href="https://physicsopenlab.org/category/english-posts/" rel="category tag">English Posts</a>, <a href="https://physicsopenlab.org/category/microwaves/" rel="category tag">Microwaves &amp; RadioAstronomy</a></span>
+	
+<span class="post-views"><i class="fa fa-eye"></i>12,550 Views</span> </p>
+<div class="clear"></div>
+			
+				<div class="entry">
+					
+					
+					<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0.jpg"><img decoding="async" class="wp-image-14299 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0.jpg" alt="" width="699" height="399" srcset="https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0.jpg 1020w, https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0-300x171.jpg 300w, https://physicsopenlab.org/wp-content/uploads/2020/07/21cmReceiver0-768x438.jpg 768w" sizes="(max-width: 699px) 100vw, 699px" /></a></p>
+<p style="text-align: justify;"><em><strong>Abstract : </strong>after the article on the pyramidal horn antenna : <a href="https://physicsopenlab.org/2020/07/20/horn-antenna-for-the-21cm-neutral-hydrogen-line/">Horn Antenna for the 21cm Neutral-Hydrogen Line</a>, we now pass to describe the design, construction and analysis of the hardware system for receiving the 21cm radio-emission of neutral hydrogen.</em></p>
+<h3>Design</h3>
+<p style="text-align: justify;">What we intend to create is a receiver centered on the frequency of <strong>1420 MHz</strong>, with a bandwidth of about <strong>50 MHz</strong>. The signal we have to receive is very weak, <span lang="en">we expect an overall gain of about <strong>50dB</strong></span>, and is practically indistinguishable from electronic noise, for this reason it is necessary to use high gains, while keeping the noise as low as possible in order to maximize the signal-to-noise ratio. The first component will then be a <strong>low noise amplifier (LNA)</strong> with a <strong>noise figure &lt;1dB</strong>.<br />
+After the amplification stage it will be necessary to insert a <strong>band-pass filter</strong> centered at 1420 MHz in order to select only the portion of the spectrum that interests us.<br />
+The actual receiver will be a <strong>software defined radio (SDR)</strong> <strong>module</strong> connected to the computer&#8217;s USB port. The SDR module must have good frequency stability over time in order to obtain well-defined and repeatable signal spectra.<br />
+These constraints led us to outline the following receiver design.</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign.png"><img decoding="async" loading="lazy" class="size-large wp-image-14578 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign-1024x704.png" alt="" width="618" height="425" srcset="https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign-1024x704.png 1024w, https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign-300x206.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign-768x528.png 768w, https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign-110x75.png 110w, https://physicsopenlab.org/wp-content/uploads/2020/09/receiverDesign.png 1036w" sizes="(max-width: 618px) 100vw, 618px" /></a>The components we have identified are the following:</p>
+<ul>
+<li>LNA amplifier, prefiltered at 1420MHz, <strong>gain=30-40dB</strong>,<strong> FN&lt;1dB</strong></li>
+<li>Wide band amplifier, <strong>gain = 10-20dB </strong></li>
+<li>Band pass filter (passband of about <strong>50MHz</strong>) centered at <strong>1420MHz</strong></li>
+</ul>
+<h4>1420 MHz Prefiltered LNA</h4>
+<p style="text-align: justify;">The first component of the signal reception chain is the low noise amplifier (LNA), it is the most critical and most important component because its noise figure (NF) determines the noise figure of the entire apparatus. It is therefore important to choose a good LNA with a low noise factor in order to maximize the S/N ratio.<br />
+<span lang="en">In our receiver we have adopted a NooElec amplifier specially designed for receiving the frequency of 1420MHz. The <strong>NooElec SAWbird+ H1m</strong> is an Ultra Low Noise (LNA) amplifier module with premium cascaded SAW filter. The amplifier, centered at the 1420 MHz frequency, is designed to receive the 21cm neutral hydrogen line. The image below shows the amplifier in its aluminum case with the two SMA connectors and the USB socket for power supply.</span></p>
+<p style="text-align: justify;"><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird3.png"><img decoding="async" loading="lazy" class="wp-image-14373 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird3.png" alt="" width="600" height="191" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird3.png 944w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird3-300x95.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird3-768x244.png 768w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p style="text-align: justify;">The following image, taken directly from the NooElec documentation, shows the amplifier diagram. The filter is connected between the two amplification stages. It should be noted that the RF output is connected directly to the power supply, this means that the amplifier can also be powered via a <strong>bias-T</strong> directly from the receiver stage downstream of the amplifier. For convenience we have powered the component via the USB socket, but in doing so there is a direct voltage (DC) of about 5V on the RF output which <strong>must be filtered</strong> with a suitable<strong> DC-Block</strong> (or with a good capacitor).</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2.png"><img decoding="async" loading="lazy" class=" wp-image-14374 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2-1024x350.png" alt="" width="600" height="205" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2-1024x350.png 1024w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2-300x103.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2-768x262.png 768w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird2.png 1194w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p><strong>Technical Data</strong> :</p>
+<ul>
+<li><strong>+40dB</strong> of RF gain at 1420MHz</li>
+<li>65MHz 3dB bandwidth</li>
+<li><strong>0.8dB</strong> noise figure at 1420MHz</li>
+<li>50Ω gain block</li>
+<li>+3.3V-5V single supply</li>
+<li>122mA Current Draw</li>
+</ul>
+<div id="KnM9nf">
+<div id="tw-smenu" class="tw-menu" style="text-align: justify;"><span style="text-align: justify;">The following table and diagram show the frequency response of the amplifier. You can see how the passband goes from a minimum of 1380MHz up to a maximum of 1440MHz, with a gain of 40dB. Outside the band, the gain is reduced to -20dB.</span></div>
+<div></div>
+<div>
+<table class=" aligncenter" style="height: 116px;" width="286">
+<tbody>
+<tr>
+<td width="135"><b><i>Frequency (MHz)</i></b></td>
+<td width="135"><b><i>Gain (dB)</i></b></td>
+</tr>
+<tr>
+<td width="135">1300</td>
+<td width="135"><strong>-7</strong></td>
+</tr>
+<tr>
+<td width="135">1420</td>
+<td width="135"><strong>40</strong></td>
+</tr>
+<tr>
+<td width="135">1500</td>
+<td width="135"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4.png"><img decoding="async" loading="lazy" class=" wp-image-14375 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4-1024x620.png" alt="" width="600" height="363" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4-1024x620.png 1024w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4-300x182.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4-768x465.png 768w, https://physicsopenlab.org/wp-content/uploads/2020/08/sawbird4.png 1170w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<h4>Wideband Amplifier</h4>
+<p style="text-align: justify;">This unit HAB-FLTNOSAW built by UPUTRONICS is a preamp designed to go between a software defined radio receiver and an antenna. The LNA used inside is a MiniCircuits PSA4-5043. This particular model has the SAW filter removed to cover the 0.1MHz to 4GHz. There are 2 options for powering the unit : either by the USB header or via bias-tee. Devices such as the Airspy can enable bias-tee and power the device. Alternatively any mini USB cable can be used to power the device. We chose to power the unit via USB line.</p>
+<p style="text-align: justify;"><strong>Technical Data</strong> :<br />
+Gain 24db @ 100MHz -&gt; <strong>15.2db @ 1415MHz</strong><br />
+<strong>NF 0.75dB</strong><br />
+Supply Voltage USB or Bias tee 5V</p>
+<p>In the images below we show the unit and its frequency response.</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1.png"><img decoding="async" loading="lazy" class=" wp-image-14376 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1-1024x413.png" alt="" width="601" height="243" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1-1024x413.png 1024w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1-300x121.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1-768x309.png 768w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics1.png 1236w" sizes="(max-width: 601px) 100vw, 601px" /></a></p>
+<table class=" aligncenter" style="height: 116px;" width="286">
+<tbody>
+<tr>
+<td width="135"><b><i>Frequency (MHz)</i></b></td>
+<td width="135"><b><i>Gain (dB)</i></b></td>
+</tr>
+<tr>
+<td width="135">1300</td>
+<td width="135"><strong>16</strong></td>
+</tr>
+<tr>
+<td width="135">1420</td>
+<td width="135"><strong>15</strong></td>
+</tr>
+<tr>
+<td width="135">1500</td>
+<td width="135"><strong>14</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2.png"><img decoding="async" loading="lazy" class=" wp-image-14377 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2-1024x705.png" alt="" width="601" height="414" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2-1024x705.png 1024w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2-300x207.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2-768x529.png 768w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2-110x75.png 110w, https://physicsopenlab.org/wp-content/uploads/2020/08/uptronics2.png 1034w" sizes="(max-width: 601px) 100vw, 601px" /></a></p>
+<h4>1420 MHz Band Pass Filter</h4>
+<p style="text-align: justify;">This filter is dedicated to amateur radioastronomers interested in the hydrogen line observations. It uses the TA2494A SAW component and measures only 50 x 10mm. It features edge pads for an easy soldering of a RF shield. Insertion loss is typically less than 3.5dB and bandwith 80MHz.</p>
+<p><strong>Technical Data</strong> :<br />
+Center Frequency <strong>1420MHz</strong><br />
+Usable Bandpass <strong>1380-1460MHz</strong><br />
+Insertion Loss, 1380 to 1460 MHz <strong>3.5dB</strong><br />
+Amplitude Ripple, 1380 to 1460 MHz 1.0 dBpp<br />
+VSWR, 1380  to 1420 MHz 1.9:1<br />
+Rejection referenced to 0dB :<br />
+DC to 1300 MHz 28dB<br />
+1550 to 3000 MHz 30dB<br />
+Impedance 50Ω<br />
+Maximum Input Power Level 10 dBm</p>
+<p style="text-align: justify;">In the images below we show the unit and its frequency response. We have soldered two wires between the SMA female headers and we wrapped the filter with aluminum tape in order to shield the filter.</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm.jpg"><img decoding="async" loading="lazy" class=" wp-image-14378 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm-1024x415.jpg" alt="" width="601" height="243" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm-1024x415.jpg 1024w, https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm-300x122.jpg 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm-768x312.jpg 768w, https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm.jpg 1134w" sizes="(max-width: 601px) 100vw, 601px" /></a></p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1.jpg"><img decoding="async" loading="lazy" class=" wp-image-14432 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1-1024x377.jpg" alt="" width="599" height="220" srcset="https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1-1024x377.jpg 1024w, https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1-300x110.jpg 300w, https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1-768x283.jpg 768w, https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1-1050x388.jpg 1050w, https://physicsopenlab.org/wp-content/uploads/2020/09/filter21cm1.jpg 1054w" sizes="(max-width: 599px) 100vw, 599px" /></a></p>
+<table class=" aligncenter" style="height: 116px;" width="286">
+<tbody>
+<tr>
+<td width="135"><b><i>Frequency (MHz)</i></b></td>
+<td width="135"><b><i>Gain (dB)</i></b></td>
+</tr>
+<tr>
+<td width="135">1300</td>
+<td width="135"><strong>-50</strong></td>
+</tr>
+<tr>
+<td width="135">1420</td>
+<td width="135"><strong>-3.5</strong></td>
+</tr>
+<tr>
+<td width="135">1500</td>
+<td width="135"><strong>-50</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm2.png"><img decoding="async" loading="lazy" class="wp-image-14379 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm2.png" alt="" width="600" height="426" srcset="https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm2.png 873w, https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm2-300x213.png 300w, https://physicsopenlab.org/wp-content/uploads/2020/08/filter21cm2-768x545.png 768w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<h4>Airspy R2 SDR  Receiver</h4>
+<p id="tw-target-text" class="tw-data-text tw-text-large XcVN5d tw-ta" dir="ltr" style="text-align: justify;" data-placeholder="Traduzione"><span lang="en">From the manufacturer&#8217;s site : The Airspy R2 sets a new level of performance in receiving the VHF and UHF bands thanks to its low-IF architecture based on the <strong>Rafael Micro R820T2 chip</strong> and a <strong>high quality 12-bit Oversampling ADC</strong> and state-of-the-art DSP. In Oversampling mode, the Airspy R2 applies analog RF and IF filters to the signal path and increases the <strong>resolution up to 16 bits</strong> using software decimation. Coverage can be extended to HF bands via the up-converter companion SpyVerter (not used by us). Airspy R2 is 100% compatible with all existing software, including the SDR # scan standard, but also with a number of popular software-defined radio applications such as SDR-Radio, HDSDR, GQRX and <strong>GNU Radio</strong>. The stability and precision of the clock for the local oscillator, given at 0.5ppm, is also important for our application.</span></p>
+<p id="tw-target-text" class="tw-data-text tw-text-large XcVN5d tw-ta" dir="ltr" data-placeholder="Traduzione"><span lang="en">Key Features of the AirSpy SDR Receiver </span><span lang="en">:<br />
+</span>● Continuous <strong>24 – 1700 MHz</strong> native RX range, down to DC with the SpyVerter option (not used)<br />
+● 3.5 dB NF between 42 and 1002 MHz<br />
+● Maximum RF input of +10 dBm<br />
+● Tracking RF filters<br />
+● 35dBm IIP3 RF front end<br />
+● <strong>12bit ADC @ 20 MSPS</strong> (10.4 ENOB, 70dB SNR, 95dB SFDR)<br />
+● 10MSPS IQ output<br />
+● <strong>0.5 ppm high precision, low phase noise clock</strong><br />
+● 10 MHz panoramic spectrum view with up to 9 MHz alias/image free<br />
+● <strong>No IQ imbalance</strong>, DC offset or 1/F noise at the center of the spectrum1 x RF Input<br />
+● 4.5v software switched Bias-Tee to power LNAs and up/down-converters (not used)<br />
+● Operating temperature: -10°C to 40°C</p>
+<p dir="ltr" style="text-align: justify;" data-placeholder="Traduzione">In the configuration of the device (done through the <strong>osmocom</strong> driver in <strong>GNU radio</strong>) the RF gain is set to 0 (default setting), while the IF and BB gains are each set to 10 dB. These very low gain values ​​show the effectiveness of the components placed upstream of the receiver : from the antenna to the LNA and Wideband amplifiers. The bias-T option is also disabled.</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/08/s-l300.jpg"><img decoding="async" loading="lazy" class=" wp-image-14380 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/08/s-l300.jpg" alt="" width="500" height="386" /></a></p>
+<h4>The Complete Receiver</h4>
+<p style="text-align: justify;">All components of the receiver have been placed in a sealed box, lined internally with aluminum tape in order to increase the shield against RF interference. As you can see, all the modules are equipped with a metal container so in this way we have created a sort of double shielding. The antenna is connected directly to the LNA module and, in cascade, all the other modules are connected up to the Airspy SDR receiver. For the connection between the modules we used straight and right-angled SMA male-male and male-female connectors and a length of cable. The power supply of the amplifiers is obtained via USB from an externally placed <strong>&#8220;power bank&#8221; battery</strong>, while the Airspy receiver is powered by the PC via USB. For the connection to the PC we used a USB cable with extension, the laptop PC is used with the battery disconnected from the power supply : we have taken all the precautions to minimize noise and RF interference. The image below shows the receiver from the antenna to the Airspy module.</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/09/21cmReceiver2.png"><img decoding="async" loading="lazy" class=" wp-image-14418 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/09/21cmReceiver2.png" alt="" width="551" height="732" /></a></p>
+<h3>Analysis of the Receiving system</h3>
+<h4>Gain</h4>
+<p>For each of the components we add the gain :</p>
+<table class=" aligncenter" style="height: 116px;" width="286">
+<tbody>
+<tr>
+<td width="135"><b><i>Frequency (MHz)</i></b></td>
+<td width="135"><b><i>Gain (dB)</i></b></td>
+</tr>
+<tr>
+<td width="135">1300</td>
+<td width="135"><strong>-7+16-50 = -41</strong></td>
+</tr>
+<tr>
+<td width="135">1420</td>
+<td width="135"><strong>40+15-3.5 = 51.5</strong></td>
+</tr>
+<tr>
+<td width="135">1500</td>
+<td width="135"><strong>0+14-50 = -36</strong></td>
+</tr>
+</tbody>
+</table>
+<p id="tw-target-text" class="tw-data-text tw-text-large XcVN5d tw-ta" dir="ltr" style="text-align: justify;" data-placeholder="Traduzione"><span lang="en">We see how the gain at our frequency has the value of about <strong>50dB</strong> while the adjacent frequencies are considerably reduced by the filtering operation. Given the rather high gain it will be necessary to be careful not to work in saturation regime. We also note that the above does not take into account the &#8220;gain&#8221; of the antenna and its further filtering operation with respect to the other frequencies (the antenna works as a high pass filter).</span></p>
+<p dir="ltr" style="text-align: justify;" data-placeholder="Traduzione">Naturally, the contribution of the SDR receiver must be added to these values, in which the RF gain, the IF gain and the BB gain can be configured. In our case we set the RF gain equal to 0, while the other two parameters we set them to 10dB.</p>
+<h4>Noise Figure</h4>
+<p>For the noise figure, the Friis formula must be used :</p>
+<p><a href="https://physicsopenlab.org/wp-content/uploads/2020/09/FriisFormula.png"><img decoding="async" loading="lazy" class=" wp-image-14592 aligncenter" src="https://physicsopenlab.org/wp-content/uploads/2020/09/FriisFormula.png" alt="" width="511" height="63" srcset="https://physicsopenlab.org/wp-content/uploads/2020/09/FriisFormula.png 769w, https://physicsopenlab.org/wp-content/uploads/2020/09/FriisFormula-300x37.png 300w" sizes="(max-width: 511px) 100vw, 511px" /></a></p>
+<p>Where the values ​​of <em>F</em> and <em>G</em> are not expressed in dB but as ratios.</p>
+<p><em>G1</em> = 40db = 10000<br />
+<em>F1</em> = 0.8dB = 1.2<br />
+<em>F2</em> = 0.75dB = 1.2</p>
+<p><em>F<sub>total</sub> = F<sub>1</sub> + (F<sub>2 </sub>&#8211; 1) / G<sub>1</sub> </em>=1.2 + (1.2-1)/10000 ≅ 1.2 ⇒ <strong><em>F<sub>total</sub></em> = 0.8dB</strong></p>
+<p style="text-align: justify;">It can be seen that the noise figure is practically equal to the value of the noise figure of the LNA. We therefore understand the importance of the first stage in the RF signal amplification chain. The noise contribution of the SDR receiver must also be added to the RF part, which is given equal to 3.5dB, however, given the high gain of the RF chain this contribution is negligible.</p>
+<p style="text-align: justify;">With these data we can also calculate the <strong>equivalent noise temperature Te</strong> of our receiver. The noise temperature is a theoretical concept and refers to the noise that would be generated by a resistor brought to temperature Te. The temperature Te is related to the noise figure by the following relationship :</p>
+<p style="text-align: center;"><strong><em>Te = (F-1)*To</em></strong></p>
+<p style="text-align: justify;">Where <em>To</em> is the reference temperature of 290°K. For our system we obtain <strong>Te = 58°K. </strong><span lang="en">This is a somewhat optimistic evaluation, probably the real value is little higher</span>.</p>
+<h3>References</h3>
+<p style="text-align: justify;">The Intenet contains numerous examples of antennas and receivers for the emission of neutral hydrogen at 21 cm. At the following link there is the description of an excellent similar project : <a href="https://hackaday.com/2019/09/29/probe-the-galaxy-on-a-shoestring-with-this-diy-hydrogen-line-telescope/"><strong>probe-the-galaxy-on-a-shoestring-with-this-diy-hydrogen-line-telescope</strong></a>, and this is the related documentation : <strong><a href="https://physicsopenlab.org/wp-content/uploads/2020/07/Hydrogen-Line-Project-Documentation.pdf">Hydrogen Line Project Documentation</a></strong>. <span lang="en">A site very rich in information (I would say indispensable ..) is the following <strong><a href="https://wvurail.org/dspira/">DSPIRA</a></strong></span></p>
+<h3>Next Step</h3>
+<p style="text-align: justify;">the next step consists in setting up the GNU radio software part for the reception, recording and analysis of radio data : <strong><a href="https://physicsopenlab.org/2020/07/26/gnuradio-software-for-the-21-cm-neutral-hydrogen-line/">GNURadio Software for 21cm Neutral-Hydrogen Line</a></strong></p>
+<div class="clear"></div><div style="margin-top:20px; margin-bottom:20px;" class="divider divider-solid"></div>
+<p style="text-align: justify;">If you liked this post you can share it on the &#8220;social&#8221; <strong>Facebook</strong>, <strong>Twitter</strong> or <strong>LinkedIn</strong> with the buttons below. This way you can help us! <strong>Thank you !</strong></p>
+<h4>Donation</h4>
+<p style="text-align: justify;">If you like this site and if you want to contribute to the development of the activities you can make a donation, <strong>thank you !</strong></p>
+<!-- Begin PayPal Donations by https://www.tipsandtricks-hq.com/paypal-donations-widgets-plugin -->
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <div class="paypal-donations">
+        <input type="hidden" name="cmd" value="_donations" />
+        <input type="hidden" name="bn" value="TipsandTricks_SP" />
+        <input type="hidden" name="business" value="physicsopenlab@gmail.com" />
+        <input type="hidden" name="rm" value="0" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        <input type="image" style="cursor: pointer;" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
+        <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </div>
+</form>
+<!-- End PayPal Donations -->
+
+					
+									</div><!-- .entry /-->
+
+
+				<div class="share-post">
+	<span class="share-text">Share</span>
+
+		<ul class="flat-social">
+			<li><a href="http://www.facebook.com/sharer.php?u=https://physicsopenlab.org/?p=14300" class="social-facebook" rel="external" target="_blank"><i class="fa fa-facebook"></i> <span>Facebook</span></a></li>
+				<li><a href="https://twitter.com/intent/tweet?text=A+Low-Noise+SDR-Based+Receiver+for+the+21+cm+Neutral-Hydrogen+Line&url=https://physicsopenlab.org/?p=14300" class="social-twitter" rel="external" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+					<li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://physicsopenlab.org/2020/07/26/sdr-based-receiver-for-the-21-cm-neutral-hydrogen-line/&amp;title=A+Low-Noise+SDR-Based+Receiver+for+the+21+cm+Neutral-Hydrogen+Line" class="social-linkedin" rel="external" target="_blank"><i class="fa fa-linkedin"></i> <span>LinkedIn</span></a></li>
+			</ul>
+		<div class="clear"></div>
+</div> <!-- .share-post -->
+				<div class="clear"></div>
+			</div><!-- .post-inner -->
+
+			<script type="application/ld+json" class="tie-schema-graph">{"@context":"http:\/\/schema.org","@type":"Article","dateCreated":"2020-07-26T15:32:50+02:00","datePublished":"2020-07-26T15:32:50+02:00","dateModified":"2020-10-07T09:01:28+02:00","headline":"A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line","name":"A Low-Noise SDR-Based Receiver for the 21 cm Neutral-Hydrogen Line","keywords":"SDR","url":"https:\/\/physicsopenlab.org\/2020\/07\/26\/sdr-based-receiver-for-the-21-cm-neutral-hydrogen-line\/","description":"Abstract :\u00a0after the article on the pyramidal horn antenna : Horn Antenna for the 21cm Neutral-Hydrogen Line, we now pass to describe the design, construction and analysis of the hardware system for r","copyrightYear":"2020","publisher":{"@id":"#Publisher","@type":"Organization","name":"PhysicsOpenLab","logo":{"@type":"ImageObject","url":"https:\/\/physicsopenlab.org\/wp-content\/uploads\/2016\/03\/logoPOL.png"},"sameAs":["https:\/\/www.facebook.com\/lodovico.lappetito"]},"sourceOrganization":{"@id":"#Publisher"},"copyrightHolder":{"@id":"#Publisher"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/physicsopenlab.org\/2020\/07\/26\/sdr-based-receiver-for-the-21-cm-neutral-hydrogen-line\/","breadcrumb":{"@id":"#crumbs"}},"author":{"@type":"Person","name":"Lodovico","url":"https:\/\/physicsopenlab.org\/author\/physics7\/"},"articleSection":"English Posts,Microwaves &amp; RadioAstronomy","articleBody":"\r\nAbstract :\u00a0after the article on the pyramidal horn antenna : Horn Antenna for the 21cm Neutral-Hydrogen Line, we now pass to describe the design, construction and analysis of the hardware system for receiving the 21cm radio-emission of neutral hydrogen.\r\n\r\nDesign\r\nWhat we intend to create is a receiver centered on the frequency of 1420 MHz, with a bandwidth of about 50 MHz. The signal we have to receive is very weak, we expect an overall gain of about 50dB, and is practically indistinguishable from electronic noise, for this reason it is necessary to use high gains, while keeping the noise as low as possible in order to maximize the signal-to-noise ratio. The first component will then be a low noise amplifier (LNA) with a noise figure &lt;1dB.\r\nAfter the amplification stage it will be necessary to insert a band-pass filter centered at 1420 MHz in order to select only the portion of the spectrum that interests us.\r\nThe actual receiver will be a software defined radio (SDR) module connected to the computer's USB port. The SDR module must have good frequency stability over time in order to obtain well-defined and repeatable signal spectra.\r\nThese constraints led us to outline the following receiver design.\r\nThe components we have identified are the following:\r\n\r\n \tLNA amplifier, prefiltered at 1420MHz, gain=30-40dB, FN&lt;1dB\r\n \tWide band amplifier, gain = 10-20dB \r\n \tBand pass filter (passband of about 50MHz) centered at 1420MHz\r\n\r\n1420 MHz Prefiltered LNA\r\nThe first component of the signal reception chain is the low noise amplifier (LNA), it is the most critical and most important component because its noise figure (NF) determines the noise figure of the entire apparatus. It is therefore important to choose a good LNA with a low noise factor in order to maximize the S\/N ratio.\r\nIn our receiver we have adopted a NooElec amplifier specially designed for receiving the frequency of 1420MHz. The NooElec SAWbird+ H1m is an Ultra Low Noise (LNA) amplifier module with premium cascaded SAW filter. The amplifier, centered at the 1420 MHz frequency, is designed to receive the 21cm neutral hydrogen line. The image below shows the amplifier in its aluminum case with the two SMA connectors and the USB socket for power supply.\r\n\r\nThe following image, taken directly from the NooElec documentation, shows the amplifier diagram. The filter is connected between the two amplification stages. It should be noted that the RF output is connected directly to the power supply, this means that the amplifier can also be powered via a bias-T directly from the receiver stage downstream of the amplifier. For convenience we have powered the component via the USB socket, but in doing so there is a direct voltage (DC) of about 5V on the RF output which must be filtered with a suitable DC-Block (or with a good capacitor).\r\n\r\n\r\nTechnical Data\u00a0:\r\n\r\n \t+40dB of RF gain at 1420MHz\r\n \t65MHz 3dB bandwidth\r\n \t0.8dB noise figure at 1420MHz\r\n \t50\u03a9 gain block\r\n \t+3.3V-5V single supply\r\n \t122mA Current Draw\r\n\r\n\r\nThe following table and diagram show the frequency response of the amplifier. You can see how the passband goes from a minimum of 1380MHz up to a maximum of 1440MHz, with a gain of 40dB. Outside the band, the gain is reduced to -20dB.\r\n\r\n\r\n\r\n\r\n\r\nFrequency (MHz)\r\nGain (dB)\r\n\r\n\r\n1300\r\n-7\r\n\r\n\r\n1420\r\n40\r\n\r\n\r\n1500\r\n0\r\n\r\n\r\n\r\n\r\n\r\n\r\nWideband Amplifier\r\nThis unit HAB-FLTNOSAW built by UPUTRONICS is a preamp designed to go between a software defined radio receiver and an antenna. The LNA used inside is a MiniCircuits PSA4-5043. This particular model has the SAW filter removed to cover the 0.1MHz to 4GHz. There are 2 options for powering the unit : either by the USB header or via bias-tee. Devices such as the Airspy can enable bias-tee and power the device. Alternatively any mini USB cable can be used to power the device. We chose to power the unit via USB line.\r\nTechnical Data :\r\nGain 24db @ 100MHz -&gt; 15.2db @ 1415MHz\r\nNF 0.75dB\r\nSupply Voltage USB or Bias tee 5V\r\nIn the images below we show the unit and its frequency response.\r\n\r\n\r\n\r\n\r\n\r\nFrequency (MHz)\r\nGain (dB)\r\n\r\n\r\n1300\r\n16\r\n\r\n\r\n1420\r\n15\r\n\r\n\r\n1500\r\n14\r\n\r\n\r\n\r\n\r\n1420 MHz Band Pass Filter\r\nThis filter is dedicated to amateur radioastronomers interested in the hydrogen line observations. It uses the TA2494A SAW component and measures only 50 x 10mm. It features edge pads for an easy soldering of a RF shield. Insertion loss is typically less than 3.5dB and bandwith 80MHz.\r\nTechnical Data :\r\nCenter Frequency 1420MHz\r\nUsable Bandpass 1380-1460MHz\r\nInsertion Loss, 1380 to 1460 MHz 3.5dB\r\nAmplitude Ripple, 1380 to 1460 MHz 1.0 dBpp\r\nVSWR, 1380 \u00a0to 1420 MHz 1.9:1\r\nRejection referenced to 0dB :\r\nDC to 1300 MHz 28dB\r\n1550 to 3000 MHz 30dB\r\nImpedance 50\u03a9\r\nMaximum Input Power Level 10 dBm\r\nIn the images below we show the unit and its frequency response. We have soldered two wires between the SMA female headers and we wrapped the filter with aluminum tape in order to shield the filter.\r\n\r\n\r\n\r\n\r\n\r\n\r\nFrequency (MHz)\r\nGain (dB)\r\n\r\n\r\n1300\r\n-50\r\n\r\n\r\n1420\r\n-3.5\r\n\r\n\r\n1500\r\n-50\r\n\r\n\r\n\r\n\r\nAirspy R2 SDR\u00a0 Receiver\r\nFrom the manufacturer's site : The Airspy R2 sets a new level of performance in receiving the VHF and UHF bands thanks to its low-IF architecture based on the Rafael Micro R820T2 chip and a high quality 12-bit Oversampling ADC and state-of-the-art DSP. In Oversampling mode, the Airspy R2 applies analog RF and IF filters to the signal path and increases the resolution up to 16 bits using software decimation. Coverage can be extended to HF bands via the up-converter companion SpyVerter (not used by us). Airspy R2 is 100% compatible with all existing software, including the SDR # scan standard, but also with a number of popular software-defined radio applications such as SDR-Radio, HDSDR, GQRX and GNU Radio. The stability and precision of the clock for the local oscillator, given at 0.5ppm, is also important for our application.\r\nKey Features of the AirSpy SDR Receiver :\r\n\u25cf Continuous 24 \u2013 1700 MHz native RX range, down to DC with the SpyVerter option (not used)\r\n\u25cf 3.5 dB NF between 42 and 1002 MHz\r\n\u25cf Maximum RF input of +10 dBm\r\n\u25cf Tracking RF filters\r\n\u25cf 35dBm IIP3 RF front end\r\n\u25cf 12bit ADC @ 20 MSPS (10.4 ENOB, 70dB SNR, 95dB SFDR)\r\n\u25cf 10MSPS IQ output\r\n\u25cf 0.5 ppm high precision, low phase noise clock\r\n\u25cf 10 MHz panoramic spectrum view with up to 9 MHz alias\/image free\r\n\u25cf No IQ imbalance, DC offset or 1\/F noise at the center of the spectrum1 x RF Input\r\n\u25cf 4.5v software switched Bias-Tee to power LNAs and up\/down-converters (not used)\r\n\u25cf Operating temperature: -10\u00b0C to 40\u00b0C\r\nIn the configuration of the device (done through the osmocom driver in GNU radio) the RF gain is set to 0 (default setting), while the IF and BB gains are each set to 10 dB. These very low gain values \u200b\u200bshow the effectiveness of the components placed upstream of the receiver : from the antenna to the LNA and Wideband amplifiers. The bias-T option is also disabled.\r\n\r\nThe Complete Receiver\r\nAll components of the receiver have been placed in a sealed box, lined internally with aluminum tape in order to increase the shield against RF interference. As you can see, all the modules are equipped with a metal container so in this way we have created a sort of double shielding. The antenna is connected directly to the LNA module and, in cascade, all the other modules are connected up to the Airspy SDR receiver. For the connection between the modules we used straight and right-angled SMA male-male and male-female connectors and a length of cable. The power supply of the amplifiers is obtained via USB from an externally placed \"power bank\" battery, while the Airspy receiver is powered by the PC via USB. For the connection to the PC we used a USB cable with extension, the laptop PC is used with the battery disconnected from the power supply : we have taken all the precautions to minimize noise and RF interference. The image below shows the receiver from the antenna to the Airspy module.\r\n\r\nAnalysis of the Receiving system\r\nGain\r\nFor each of the components we add the gain :\r\n\r\n\r\n\r\nFrequency (MHz)\r\nGain (dB)\r\n\r\n\r\n1300\r\n-7+16-50 = -41\r\n\r\n\r\n1420\r\n40+15-3.5 = 51.5\r\n\r\n\r\n1500\r\n0+14-50 = -36\r\n\r\n\r\n\r\nWe see how the gain at our frequency has the value of about 50dB while the adjacent frequencies are considerably reduced by the filtering operation. Given the rather high gain it will be necessary to be careful not to work in saturation regime. We also note that the above does not take into account the \"gain\" of the antenna and its further filtering operation with respect to the other frequencies (the antenna works as a high pass filter).\r\nNaturally, the contribution of the SDR receiver must be added to these values, in which the RF gain, the IF gain and the BB gain can be configured. In our case we set the RF gain equal to 0, while the other two parameters we set them to 10dB.\r\n\r\nNoise Figure\r\nFor the noise figure, the Friis formula must be used :\r\n\r\n\r\n\r\nWhere the values \u200b\u200bof F and G are not expressed in dB but as ratios.\r\n\r\nG1 = 40db = 10000\r\nF1 = 0.8dB = 1.2\r\nF2 = 0.75dB = 1.2\r\n\r\nFtotal = F1 + (F2 - 1) \/ G1 =1.2 + (1.2-1)\/10000 \u2245 1.2 \u21d2 Ftotal = 0.8dB\r\nIt can be seen that the noise figure is practically equal to the value of the noise figure of the LNA. We therefore understand the importance of the first stage in the RF signal amplification chain. The noise contribution of the SDR receiver must also be added to the RF part, which is given equal to 3.5dB, however, given the high gain of the RF chain this contribution is negligible.\r\nWith these data we can also calculate the equivalent noise temperature Te of our receiver. The noise temperature is a theoretical concept and refers to the noise that would be generated by a resistor brought to temperature Te. The temperature Te is related to the noise figure by the following relationship :\r\nTe = (F-1)*To\r\nWhere To is the reference temperature of 290\u00b0K. For our system we obtain Te = 58\u00b0K. This is a somewhat optimistic evaluation, probably the real value is little higher.\r\n\r\nReferences\r\nThe Intenet contains numerous examples of antennas and receivers for the emission of neutral hydrogen at 21 cm. At the following link there is the description of an excellent similar project : probe-the-galaxy-on-a-shoestring-with-this-diy-hydrogen-line-telescope, and this is the related documentation : Hydrogen Line Project Documentation. A site very rich in information (I would say indispensable ..) is the following DSPIRA\r\n\r\nNext Step\r\nthe next step consists in setting up the GNU radio software part for the reception, recording and analysis of radio data : GNURadio Software for 21cm Neutral-Hydrogen Line\r\n\r\nIf you liked this post you can share it on the \"social\" Facebook, Twitter or LinkedIn with the buttons below. This way you can help us! Thank you !\r\n\r\nDonation\r\nIf you like this site and if you want to contribute to the development of the activities you can make a donation, thank you !\r\n","image":{"@type":"ImageObject","url":"https:\/\/physicsopenlab.org\/wp-content\/uploads\/2020\/07\/21cmReceiver0.jpg","width":1020,"height":582}}</script>
+		</article><!-- .post-listing -->
+		<p class="post-tag">Tags <a href="https://physicsopenlab.org/tag/sdr/" rel="tag">SDR</a></p>
+
+		
+		
+
+				<div class="post-navigation">
+			<div class="post-previous"><a href="https://physicsopenlab.org/2020/07/20/horn-antenna-for-the-21cm-neutral-hydrogen-line/" rel="prev"><span>Previous</span> Horn Antenna for the 21cm Neutral-Hydrogen Line</a></div>
+			<div class="post-next"><a href="https://physicsopenlab.org/2020/07/26/14302/" rel="next"><span>Next</span> Un Ricevitore Low-Noise SDR-Based per l’Emissione a 21cm dell’Idrogeno Neutro</a></div>
+		</div><!-- .post-navigation -->
+		
+		
+			
+	<section id="check-also-box" class="post-listing check-also-right">
+		<a href="#" id="check-also-close"><i class="fa fa-close"></i></a>
+
+		<div class="block-head">
+			<h3>Check Also</h3>
+		</div>
+
+				<div class="check-also-post">
+						
+			<div class="post-thumbnail">
+				<a href="https://physicsopenlab.org/2022/09/28/fluorescence-quenching-and-stern-volmer-equation/">
+					<img width="310" height="165" src="https://physicsopenlab.org/wp-content/uploads/2022/09/20220926_214925-310x165.jpg" class="attachment-tie-medium size-tie-medium wp-post-image" alt="" decoding="async" loading="lazy" />					<span class="fa overlay-icon"></span>
+				</a>
+			</div><!-- post-thumbnail /-->
+						
+			<h2 class="post-title"><a href="https://physicsopenlab.org/2022/09/28/fluorescence-quenching-and-stern-volmer-equation/" rel="bookmark">Fluorescence quenching and Stern-Volmer equation</a></h2>
+			<p>Abstract: in this article we describe some fluorescence quenching measures in some substances. The phenomenon &hellip;</p>
+		</div>
+			</section>
+			
+			
+	
+		
+				
+<div id="comments">
+
+
+<div class="clear"></div>
+
+
+</div><!-- #comments -->
+
+	</div><!-- .content -->
+<aside id="sidebar">
+	<div class="theiaStickySidebar">
+<div id="categories-4" class="widget widget_categories"><div class="widget-top"><h4>Categories</h4><div class="stripe-line"></div></div>
+						<div class="widget-container">
+			<ul>
+					<li class="cat-item cat-item-79"><a href="https://physicsopenlab.org/category/biology/">Biology</a> (20)
+</li>
+	<li class="cat-item cat-item-15"><a href="https://physicsopenlab.org/category/cosmic-rays/">Cosmic Rays</a> (36)
+</li>
+	<li class="cat-item cat-item-14"><a href="https://physicsopenlab.org/category/english-posts/">English Posts</a> (251)
+</li>
+	<li class="cat-item cat-item-193"><a href="https://physicsopenlab.org/category/geophysics/">Geophysics</a> (16)
+</li>
+	<li class="cat-item cat-item-13"><a href="https://physicsopenlab.org/category/italian-posts/">Italian Posts</a> (247)
+</li>
+	<li class="cat-item cat-item-2"><a href="https://physicsopenlab.org/category/light/">Light</a> (141)
+<ul class='children'>
+	<li class="cat-item cat-item-7"><a href="https://physicsopenlab.org/category/light/fluorescence/">Fluorescence</a> (24)
+</li>
+	<li class="cat-item cat-item-150"><a href="https://physicsopenlab.org/category/light/phosphorescence/">Phosphorescence</a> (6)
+</li>
+	<li class="cat-item cat-item-6"><a href="https://physicsopenlab.org/category/light/spectrometer/">Spectrometer</a> (24)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://physicsopenlab.org/category/microwaves/">Microwaves &amp; RadioAstronomy</a> (38)
+</li>
+	<li class="cat-item cat-item-80"><a href="https://physicsopenlab.org/category/nanotechnology-smart-materials/">Nanotechnology &amp; Smart Materials</a> (8)
+</li>
+	<li class="cat-item cat-item-92"><a href="https://physicsopenlab.org/category/psoc/">PSoC</a> (16)
+</li>
+	<li class="cat-item cat-item-5"><a href="https://physicsopenlab.org/category/quantum-physics/">Quantum Physics</a> (40)
+</li>
+	<li class="cat-item cat-item-4"><a href="https://physicsopenlab.org/category/radioactivity/">Radioactivity</a> (152)
+<ul class='children'>
+	<li class="cat-item cat-item-98"><a href="https://physicsopenlab.org/category/radioactivity/alpha-spectroscopy/">Alpha Spectroscopy</a> (18)
+</li>
+	<li class="cat-item cat-item-8"><a href="https://physicsopenlab.org/category/radioactivity/gamma-spectrometry/">Gamma Spectrometry</a> (34)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://physicsopenlab.org/category/radioactivity/silicon-photomultiplier/">Silicon Photomultiplier</a> (28)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://physicsopenlab.org/category/radioactivity/xrf-spectrometry/">XRF Spectrometry</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://physicsopenlab.org/category/uncategorized/">Uncategorized</a> (1)
+</li>
+	<li class="cat-item cat-item-131"><a href="https://physicsopenlab.org/category/x-ray/">X-Ray</a> (12)
+</li>
+	<li class="cat-item cat-item-132"><a href="https://physicsopenlab.org/category/xrd/">XRD</a> (32)
+</li>
+	<li class="cat-item cat-item-16"><a href="https://physicsopenlab.org/category/xrf/">XRF</a> (8)
+</li>
+			</ul>
+
+			</div></div><!-- .widget /--><div id="text-4" class="widget widget_text"><div class="widget-top"><h4>Resources</h4><div class="stripe-line"></div></div>
+						<div class="widget-container">			<div class="textwidget"><p style="text-align: justify;">
+<a href="http://www.theremino.com" target="_blank" rel="noopener"><img class="alignnone size-full wp-image-187" src="https://physicsopenlab.org/wp-content/uploads/2015/11/theremino-e1448443940542.jpg" alt="theremino" width="200" height="42" /></a></p>
+</div>
+		</div></div><!-- .widget /-->
+		<div id="recent-posts-7" class="widget widget_recent_entries">
+		<div class="widget-top"><h4>Recent Posts</h4><div class="stripe-line"></div></div>
+						<div class="widget-container">
+		<ul>
+											<li>
+					<a href="https://physicsopenlab.org/2022/09/28/fluorescence-quenching-and-stern-volmer-equation/">Fluorescence quenching and Stern-Volmer equation</a>
+											<span class="post-date">September 28, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/09/27/quenching-della-fluorescenza-ed-equazione-di-stern-volmer/">Quenching della fluorescenza ed equazione di Stern-Volmer</a>
+											<span class="post-date">September 27, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/09/25/spettroscopia-di-emissione-atomica-da-arco-elettrico/">Spettroscopia di Emissione Atomica da Arco Elettrico</a>
+											<span class="post-date">September 25, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/09/25/spark-spectroscopy/">Arc Atomic Emission Spectroscopy</a>
+											<span class="post-date">September 25, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/08/02/an-opsl-laser/">an OPSL Laser</a>
+											<span class="post-date">August 2, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/08/02/un-laser-opsl/">un Laser OPSL</a>
+											<span class="post-date">August 2, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/08/01/thermopile-laser-sensor/">Thermopile laser power detector</a>
+											<span class="post-date">August 1, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/08/01/misuratore-potenza-laser-a-termopila/">Misuratore di potenza laser a Termopila</a>
+											<span class="post-date">August 1, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/07/10/iodine-vapor-absorption/">Iodine Vapor Absorption</a>
+											<span class="post-date">July 10, 2022</span>
+									</li>
+											<li>
+					<a href="https://physicsopenlab.org/2022/07/10/assorbimento-dei-vapori-di-iodio/">Assorbimento dei vapori di Iodio</a>
+											<span class="post-date">July 10, 2022</span>
+									</li>
+					</ul>
+
+		</div></div><!-- .widget /--><div id="tag_cloud-3" class="widget widget_tag_cloud"><div class="widget-top"><h4>Tags</h4><div class="stripe-line"></div></div>
+						<div class="widget-container"><div class="tagcloud"><a href="https://physicsopenlab.org/tag/alpha-radiation/" class="tag-cloud-link tag-link-32 tag-link-position-1" style="font-size: 8pt;" aria-label="Alpha Radiation (4 items)">Alpha Radiation</a>
+<a href="https://physicsopenlab.org/tag/alpha-spectrometer/" class="tag-cloud-link tag-link-100 tag-link-position-2" style="font-size: 13.979166666667pt;" aria-label="Alpha spectrometer (12 items)">Alpha spectrometer</a>
+<a href="https://physicsopenlab.org/tag/alpha-spectrometry/" class="tag-cloud-link tag-link-99 tag-link-position-3" style="font-size: 11.645833333333pt;" aria-label="Alpha Spectrometry (8 items)">Alpha Spectrometry</a>
+<a href="https://physicsopenlab.org/tag/coincidence/" class="tag-cloud-link tag-link-39 tag-link-position-4" style="font-size: 15pt;" aria-label="Coincidence (14 items)">Coincidence</a>
+<a href="https://physicsopenlab.org/tag/compton-scattering/" class="tag-cloud-link tag-link-46 tag-link-position-5" style="font-size: 8pt;" aria-label="Compton Scattering (4 items)">Compton Scattering</a>
+<a href="https://physicsopenlab.org/tag/cosmic-ray/" class="tag-cloud-link tag-link-58 tag-link-position-6" style="font-size: 9.1666666666667pt;" aria-label="Cosmic Ray (5 items)">Cosmic Ray</a>
+<a href="https://physicsopenlab.org/tag/cosmic-rays/" class="tag-cloud-link tag-link-55 tag-link-position-7" style="font-size: 18.354166666667pt;" aria-label="Cosmic Rays (25 items)">Cosmic Rays</a>
+<a href="https://physicsopenlab.org/tag/electron-spin-resonance/" class="tag-cloud-link tag-link-202 tag-link-position-8" style="font-size: 11.645833333333pt;" aria-label="Electron Spin Resonance (8 items)">Electron Spin Resonance</a>
+<a href="https://physicsopenlab.org/tag/entanglement/" class="tag-cloud-link tag-link-29 tag-link-position-9" style="font-size: 8pt;" aria-label="Entanglement (4 items)">Entanglement</a>
+<a href="https://physicsopenlab.org/tag/fluorescence/" class="tag-cloud-link tag-link-62 tag-link-position-10" style="font-size: 16.458333333333pt;" aria-label="Fluorescence (18 items)">Fluorescence</a>
+<a href="https://physicsopenlab.org/tag/gamma-radiation/" class="tag-cloud-link tag-link-35 tag-link-position-11" style="font-size: 8pt;" aria-label="Gamma Radiation (4 items)">Gamma Radiation</a>
+<a href="https://physicsopenlab.org/tag/gamma-spectrometer/" class="tag-cloud-link tag-link-31 tag-link-position-12" style="font-size: 18.645833333333pt;" aria-label="Gamma Spectrometer (26 items)">Gamma Spectrometer</a>
+<a href="https://physicsopenlab.org/tag/gnuradio/" class="tag-cloud-link tag-link-186 tag-link-position-13" style="font-size: 10.1875pt;" aria-label="GNURadio (6 items)">GNURadio</a>
+<a href="https://physicsopenlab.org/tag/gunnplexer/" class="tag-cloud-link tag-link-73 tag-link-position-14" style="font-size: 10.1875pt;" aria-label="Gunnplexer (6 items)">Gunnplexer</a>
+<a href="https://physicsopenlab.org/tag/ion-chamber/" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="Ion chamber (4 items)">Ion chamber</a>
+<a href="https://physicsopenlab.org/tag/light/" class="tag-cloud-link tag-link-22 tag-link-position-16" style="font-size: 12.375pt;" aria-label="Light (9 items)">Light</a>
+<a href="https://physicsopenlab.org/tag/magnetometer/" class="tag-cloud-link tag-link-156 tag-link-position-17" style="font-size: 10.1875pt;" aria-label="Magnetometer (6 items)">Magnetometer</a>
+<a href="https://physicsopenlab.org/tag/microwaves/" class="tag-cloud-link tag-link-74 tag-link-position-18" style="font-size: 12.958333333333pt;" aria-label="Microwaves (10 items)">Microwaves</a>
+<a href="https://physicsopenlab.org/tag/muon/" class="tag-cloud-link tag-link-56 tag-link-position-19" style="font-size: 12.375pt;" aria-label="Muon (9 items)">Muon</a>
+<a href="https://physicsopenlab.org/tag/muon-lifetime/" class="tag-cloud-link tag-link-57 tag-link-position-20" style="font-size: 10.1875pt;" aria-label="Muon Lifetime (6 items)">Muon Lifetime</a>
+<a href="https://physicsopenlab.org/tag/particle-detector/" class="tag-cloud-link tag-link-83 tag-link-position-21" style="font-size: 10.1875pt;" aria-label="particle detector (6 items)">particle detector</a>
+<a href="https://physicsopenlab.org/tag/phosphorescence/" class="tag-cloud-link tag-link-147 tag-link-position-22" style="font-size: 10.1875pt;" aria-label="Phosphorescence (6 items)">Phosphorescence</a>
+<a href="https://physicsopenlab.org/tag/photon-counting/" class="tag-cloud-link tag-link-87 tag-link-position-23" style="font-size: 10.1875pt;" aria-label="Photon Counting (6 items)">Photon Counting</a>
+<a href="https://physicsopenlab.org/tag/photospectrometer/" class="tag-cloud-link tag-link-61 tag-link-position-24" style="font-size: 16.75pt;" aria-label="PhotoSpectrometer (19 items)">PhotoSpectrometer</a>
+<a href="https://physicsopenlab.org/tag/pmt/" class="tag-cloud-link tag-link-23 tag-link-position-25" style="font-size: 15.729166666667pt;" aria-label="PMT (16 items)">PMT</a>
+<a href="https://physicsopenlab.org/tag/positron/" class="tag-cloud-link tag-link-38 tag-link-position-26" style="font-size: 8pt;" aria-label="Positron (4 items)">Positron</a>
+<a href="https://physicsopenlab.org/tag/psoc/" class="tag-cloud-link tag-link-91 tag-link-position-27" style="font-size: 13.979166666667pt;" aria-label="PSoC (12 items)">PSoC</a>
+<a href="https://physicsopenlab.org/tag/radioactivity/" class="tag-cloud-link tag-link-36 tag-link-position-28" style="font-size: 15.729166666667pt;" aria-label="Radioactivity (16 items)">Radioactivity</a>
+<a href="https://physicsopenlab.org/tag/radiotelescope/" class="tag-cloud-link tag-link-196 tag-link-position-29" style="font-size: 11.645833333333pt;" aria-label="radiotelescope (8 items)">radiotelescope</a>
+<a href="https://physicsopenlab.org/tag/radon/" class="tag-cloud-link tag-link-42 tag-link-position-30" style="font-size: 8pt;" aria-label="Radon (4 items)">Radon</a>
+<a href="https://physicsopenlab.org/tag/raman-spectroscopy/" class="tag-cloud-link tag-link-64 tag-link-position-31" style="font-size: 15pt;" aria-label="Raman Spectroscopy (14 items)">Raman Spectroscopy</a>
+<a href="https://physicsopenlab.org/tag/raspberry/" class="tag-cloud-link tag-link-142 tag-link-position-32" style="font-size: 10.1875pt;" aria-label="raspberry (6 items)">raspberry</a>
+<a href="https://physicsopenlab.org/tag/scintillator/" class="tag-cloud-link tag-link-54 tag-link-position-33" style="font-size: 11.645833333333pt;" aria-label="Scintillator (8 items)">Scintillator</a>
+<a href="https://physicsopenlab.org/tag/seismometer/" class="tag-cloud-link tag-link-162 tag-link-position-34" style="font-size: 10.1875pt;" aria-label="seismometer (6 items)">seismometer</a>
+<a href="https://physicsopenlab.org/tag/single-photon/" class="tag-cloud-link tag-link-24 tag-link-position-35" style="font-size: 8pt;" aria-label="Single Photon (4 items)">Single Photon</a>
+<a href="https://physicsopenlab.org/tag/sipm/" class="tag-cloud-link tag-link-30 tag-link-position-36" style="font-size: 18.645833333333pt;" aria-label="SiPM (26 items)">SiPM</a>
+<a href="https://physicsopenlab.org/tag/spectrometer/" class="tag-cloud-link tag-link-203 tag-link-position-37" style="font-size: 16.166666666667pt;" aria-label="spectrometer (17 items)">spectrometer</a>
+<a href="https://physicsopenlab.org/tag/theremino-geiger/" class="tag-cloud-link tag-link-33 tag-link-position-38" style="font-size: 16.458333333333pt;" aria-label="Theremino Geiger (18 items)">Theremino Geiger</a>
+<a href="https://physicsopenlab.org/tag/theremino-mca/" class="tag-cloud-link tag-link-43 tag-link-position-39" style="font-size: 12.958333333333pt;" aria-label="Theremino MCA (10 items)">Theremino MCA</a>
+<a href="https://physicsopenlab.org/tag/theremino-spectrometer/" class="tag-cloud-link tag-link-60 tag-link-position-40" style="font-size: 15.729166666667pt;" aria-label="Theremino Spectrometer (16 items)">Theremino Spectrometer</a>
+<a href="https://physicsopenlab.org/tag/thoron/" class="tag-cloud-link tag-link-40 tag-link-position-41" style="font-size: 8pt;" aria-label="Thoron (4 items)">Thoron</a>
+<a href="https://physicsopenlab.org/tag/thunder-optics/" class="tag-cloud-link tag-link-204 tag-link-position-42" style="font-size: 13.979166666667pt;" aria-label="thunder optics (12 items)">thunder optics</a>
+<a href="https://physicsopenlab.org/tag/x-ray/" class="tag-cloud-link tag-link-28 tag-link-position-43" style="font-size: 22pt;" aria-label="X-Ray (45 items)">X-Ray</a>
+<a href="https://physicsopenlab.org/tag/xrd/" class="tag-cloud-link tag-link-133 tag-link-position-44" style="font-size: 19.8125pt;" aria-label="XRD (31 items)">XRD</a>
+<a href="https://physicsopenlab.org/tag/xrf/" class="tag-cloud-link tag-link-27 tag-link-position-45" style="font-size: 12.958333333333pt;" aria-label="XRF (10 items)">XRF</a></div>
+</div></div><!-- .widget /--><div id="pages-5" class="widget widget_pages"><div class="widget-top"><h4>Pages</h4><div class="stripe-line"></div></div>
+						<div class="widget-container">
+			<ul>
+				<li class="page_item page-item-15"><a href="https://physicsopenlab.org/about-me/">About Me</a></li>
+<li class="page_item page-item-12252"><a href="https://physicsopenlab.org/cosmic-rays-monitor/">Cosmic Rays Monitor</a></li>
+<li class="page_item page-item-4616"><a href="https://physicsopenlab.org/disclaimer-safety/">Disclaimer &#038; Safety</a></li>
+<li class="page_item page-item-4044"><a href="https://physicsopenlab.org/low-cost-diy-scientific-equipment/">DIY Scientific Equipment</a></li>
+<li class="page_item page-item-11896"><a href="https://physicsopenlab.org/geomagnetic-monitoring/">Geomagnetic Field Monitoring</a></li>
+<li class="page_item page-item-42"><a href="https://physicsopenlab.org/">Home</a></li>
+<li class="page_item page-item-761"><a href="https://physicsopenlab.org/contents/">Index of Posts</a></li>
+<li class="page_item page-item-46 current_page_parent"><a href="https://physicsopenlab.org/posts/">Posts</a></li>
+<li class="page_item page-item-35"><a href="https://physicsopenlab.org/privacy-policy/">Privacy Policy</a></li>
+<li class="page_item page-item-6754"><a href="https://physicsopenlab.org/for-sale/">Professional Services</a></li>
+<li class="page_item page-item-15991"><a href="https://physicsopenlab.org/percorsi-didattici/">Pubblicazioni</a></li>
+<li class="page_item page-item-8566"><a href="https://physicsopenlab.org/test-page-for-upload/">Real Time Monitoring</a></li>
+<li class="page_item page-item-1991"><a href="https://physicsopenlab.org/resources-downloads/">Resources &#038; Downloads</a></li>
+<li class="page_item page-item-11894"><a href="https://physicsopenlab.org/seismic-monitoring/">Seismic Monitoring</a></li>
+<li class="page_item page-item-14423"><a href="https://physicsopenlab.org/sid-events-monitor/">SID Events Monitor</a></li>
+<li class="page_item page-item-32"><a href="https://physicsopenlab.org/terms-of-use/">Terms of Use</a></li>
+			</ul>
+
+			</div></div><!-- .widget /--><div id="archives-4" class="widget widget_archive"><div class="widget-top"><h4>Archives</h4><div class="stripe-line"></div></div>
+						<div class="widget-container">
+			<ul>
+					<li><a href='https://physicsopenlab.org/2022/09/'>September 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2022/08/'>August 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2022/07/'>July 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2022/05/'>May 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2022/04/'>April 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2022/01/'>January 2022</a></li>
+	<li><a href='https://physicsopenlab.org/2021/12/'>December 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/09/'>September 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/08/'>August 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/07/'>July 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/06/'>June 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/03/'>March 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/02/'>February 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2021/01/'>January 2021</a></li>
+	<li><a href='https://physicsopenlab.org/2020/11/'>November 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/10/'>October 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/09/'>September 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/07/'>July 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/06/'>June 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/05/'>May 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/04/'>April 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/03/'>March 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/02/'>February 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2020/01/'>January 2020</a></li>
+	<li><a href='https://physicsopenlab.org/2019/12/'>December 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/11/'>November 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/10/'>October 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/09/'>September 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/08/'>August 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/07/'>July 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/06/'>June 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/05/'>May 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/04/'>April 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/03/'>March 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/02/'>February 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2019/01/'>January 2019</a></li>
+	<li><a href='https://physicsopenlab.org/2018/12/'>December 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/11/'>November 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/10/'>October 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/09/'>September 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/08/'>August 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/07/'>July 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/05/'>May 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/02/'>February 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2018/01/'>January 2018</a></li>
+	<li><a href='https://physicsopenlab.org/2017/11/'>November 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/10/'>October 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/09/'>September 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/08/'>August 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/07/'>July 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/06/'>June 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/05/'>May 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/04/'>April 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/03/'>March 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/02/'>February 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2017/01/'>January 2017</a></li>
+	<li><a href='https://physicsopenlab.org/2016/12/'>December 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/11/'>November 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/10/'>October 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/09/'>September 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/08/'>August 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/07/'>July 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/06/'>June 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/05/'>May 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/04/'>April 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/03/'>March 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/02/'>February 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2016/01/'>January 2016</a></li>
+	<li><a href='https://physicsopenlab.org/2015/12/'>December 2015</a></li>
+	<li><a href='https://physicsopenlab.org/2015/11/'>November 2015</a></li>
+			</ul>
+
+			</div></div><!-- .widget /-->	</div><!-- .theiaStickySidebar /-->
+</aside><!-- #sidebar /-->	<div class="clear"></div>
+</div><!-- .container /-->
+
+<footer id="theme-footer">
+	<div id="footer-widget-area" class="footer-3c">
+
+	
+	
+
+	
+		
+	</div><!-- #footer-widget-area -->
+	<div class="clear"></div>
+</footer><!-- .Footer /-->
+				
+<div class="clear"></div>
+<div class="footer-bottom">
+	<div class="container">
+		<div class="alignright">
+			Powered by <a href="http://wordpress.org">WordPress</a> | Designed by <a>PhysicsOpenLab</a>		</div>
+				<div class="social-icons">
+		<a class="ttip-none" title="Rss" href="https://physicsopenlab.org/feed/" target="_blank"><i class="fa fa-rss"></i></a><a class="ttip-none" title="Facebook" href="https://www.facebook.com/lodovico.lappetito" target="_blank"><i class="fa fa-facebook"></i></a>
+			</div>
+
+		
+		<div class="alignleft">
+			© Copyright 2023, PhysicsOpenLab All Rights Reserved		</div>
+		<div class="clear"></div>
+	</div><!-- .Container -->
+</div><!-- .Footer bottom -->
+
+</div><!-- .inner-Wrapper -->
+</div><!-- #Wrapper -->
+</div><!-- .Wrapper-outer -->
+	<div id="topcontrol" class="fa fa-angle-up" title="Scroll To Top"></div>
+<div id="fb-root"></div>
+<script type='text/javascript' src='https://physicsopenlab.org/wp-content/plugins/contact-form-7/includes/swv/js/index.js' id='swv-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/physicsopenlab.org\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://physicsopenlab.org/wp-content/plugins/contact-form-7/includes/js/index.js' id='contact-form-7-js'></script>
+<script type='text/javascript' id='tie-scripts-js-extra'>
+/* <![CDATA[ */
+var tie = {"mobile_menu_active":"true","mobile_menu_top":"","lightbox_all":"true","lightbox_gallery":"true","woocommerce_lightbox":"yes","lightbox_skin":"dark","lightbox_thumb":"vertical","lightbox_arrows":"","sticky_sidebar":"1","is_singular":"1","reading_indicator":"","lang_no_results":"No Results","lang_results_found":"Results Found"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://physicsopenlab.org/wp-content/themes/sahifa/js/tie-scripts.js' id='tie-scripts-js'></script>
+<script type='text/javascript' src='https://physicsopenlab.org/wp-content/themes/sahifa/js/ilightbox.packed.js' id='tie-ilightbox-js'></script>
+<script defer type='text/javascript' src='https://stats.wp.com/e-202321.js' id='jetpack-stats-js'></script>
+<script type='text/javascript' id='jetpack-stats-js-after'>
+_stq = window._stq || [];
+_stq.push([ "view", {v:'ext',blog:'103077775',post:'14300',tz:'2',srv:'physicsopenlab.org',j:'1:12.1'} ]);
+_stq.push([ "clickTrackerInit", "103077775", "14300" ]);
+</script>
+</body>
+</html>

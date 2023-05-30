@@ -1,0 +1,380 @@
+<!DOCTYPE html><!-- HTML 5 -->
+<html lang="en-US">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://www.ccera.ca/xmlrpc.php" />
+
+<title>Memo 0006: A precision hydrogen spectrometer based on AirSpy receivers &#8211; Canadian Centre for Experimental Radio Astronomy</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Canadian Centre for Experimental Radio Astronomy &raquo; Feed" href="https://www.ccera.ca/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Canadian Centre for Experimental Radio Astronomy &raquo; Comments Feed" href="https://www.ccera.ca/comments/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.ccera.ca\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.0.2"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='courage-custom-fonts-css'  href='https://www.ccera.ca/wp-content/themes/courage/css/custom-fonts.css?ver=20180413' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://www.ccera.ca/wp-includes/css/dist/block-library/style.min.css?ver=6.0.2' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #353535;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--primary: #2277bb;--wp--preset--color--light-gray: #f0f0f0;--wp--preset--color--dark-gray: #777777;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='courage-stylesheet-css'  href='https://www.ccera.ca/wp-content/themes/courage/style.css?ver=1.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='https://www.ccera.ca/wp-content/themes/courage/css/genericons/genericons.css?ver=3.4.1' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.ccera.ca/wp-content/themes/courage/js/html5shiv.min.js?ver=3.7.3' id='html5shiv-js'></script>
+<![endif]-->
+<script type='text/javascript' src='https://www.ccera.ca/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://www.ccera.ca/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='courage-jquery-navigation-js-extra'>
+/* <![CDATA[ */
+var courage_mainnav_title = "Menu";
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ccera.ca/wp-content/themes/courage/js/navigation.js?ver=20160719' id='courage-jquery-navigation-js'></script>
+<link rel="https://api.w.org/" href="https://www.ccera.ca/wp-json/" /><link rel="alternate" type="application/json" href="https://www.ccera.ca/wp-json/wp/v2/pages/377" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.ccera.ca/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.ccera.ca/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 6.0.2" />
+<link rel="canonical" href="https://www.ccera.ca/papers/memo-0006-a-precision-hydrogen-spectrometer-based-on-airspy-receivers/" />
+<link rel='shortlink' href='https://www.ccera.ca/?p=377' />
+<link rel="alternate" type="application/json+oembed" href="https://www.ccera.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ccera.ca%2Fpapers%2Fmemo-0006-a-precision-hydrogen-spectrometer-based-on-airspy-receivers%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.ccera.ca/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ccera.ca%2Fpapers%2Fmemo-0006-a-precision-hydrogen-spectrometer-based-on-airspy-receivers%2F&#038;format=xml" />
+<script type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		if (window.wfLogHumanRan) { return; }
+		window.wfLogHumanRan = true;
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//www.ccera.ca/?wordfence_lh=1&hid=6A3E1514F0AE4FAA014D6472F626812C');
+</script><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #e8e8e8; }
+</style>
+	<link rel="icon" href="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-dish-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-dish-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-dish-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-dish-270x270.png" />
+</head>
+
+<body class="page-template-default page page-id-377 page-child parent-pageid-29 custom-background">
+
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<div id="topheader-wrap">
+		
+	<div id="topheader" class="clearfix">
+
+		
+	</div>	</div>
+
+	<div id="wrapper" class="hfeed">
+
+		<div id="header-wrap">
+
+			<header id="header" class="clearfix" role="banner">
+
+				<div id="logo" class="clearfix">
+
+										
+		<p class="site-title"><a href="https://www.ccera.ca/" rel="home">Canadian Centre for Experimental Radio Astronomy</a></p>
+
+						
+			<p class="site-description">Citizen Science and Radio Astronomy</p>
+
+		
+				</div>
+
+				<div id="header-content" class="clearfix">
+									</div>
+
+			</header>
+
+		</div>
+
+		<div id="navi-wrap">
+			<nav id="mainnav" class="clearfix" role="navigation">
+				<ul id="mainnav-menu" class="main-navigation-menu menu"><li class="page_item page-item-2 page_item_has_children"><a href="https://www.ccera.ca/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-47"><a href="https://www.ccera.ca/about/advisory-board/">Advisory Board</a></li>
+	<li class="page_item page-item-18"><a href="https://www.ccera.ca/about/contact/">Contact</a></li>
+	<li class="page_item page-item-327"><a href="https://www.ccera.ca/about/the-ccera-site/">The CCERA Sites</a></li>
+</ul>
+</li>
+<li class="page_item page-item-35 page_item_has_children"><a href="https://www.ccera.ca/data/">Data</a>
+<ul class='children'>
+	<li class="page_item page-item-255"><a href="https://www.ccera.ca/data/cceras-first-complete-21cm-survey/">CCERA&#8217;s first complete 21cm survey</a></li>
+</ul>
+</li>
+<li class="page_item page-item-25"><a href="https://www.ccera.ca/donate/">Donate</a></li>
+<li class="page_item page-item-29 page_item_has_children current_page_ancestor current_page_parent"><a href="https://www.ccera.ca/papers/">Papers</a>
+<ul class='children'>
+	<li class="page_item page-item-223"><a href="https://www.ccera.ca/papers/a-21cm-radio-telescope-for-the-cost-conscious/">A 21cm Radio Telescope for the Cost-Conscious</a></li>
+	<li class="page_item page-item-324"><a href="https://www.ccera.ca/papers/a-description-of-the-dual-channel-hydrogen-line-spectrometer/">Memo 0001: Hydrogen line spectrometer description</a></li>
+	<li class="page_item page-item-350"><a href="https://www.ccera.ca/papers/memo-0002-observations-on-ad-hoc-circular-waveguide-for-21cm-measurements/">Memo 0002: Observations on ad-hoc circular waveguide for 21cm measurements.</a></li>
+	<li class="page_item page-item-358"><a href="https://www.ccera.ca/papers/memo-0003-calibrating-a-rooftop-21cm-dual-channel-spectrometer/">Memo 0003: Calibrating a rooftop 21cm dual-channel spectrometer.</a></li>
+	<li class="page_item page-item-366"><a href="https://www.ccera.ca/papers/memo-0004-a-%c2%bd-wave-coaxial-notch-filter-for-1-7-to-1-9ghz/">Memo 0004: A ½-wave coaxial notch filter for 1.7 to 1.9GHz</a></li>
+	<li class="page_item page-item-374"><a href="https://www.ccera.ca/papers/memo-0005-a-thermal-stage-for-a-radio-telescope-front-end/">Memo 0005: A “thermal stage” for a radio telescope front-end</a></li>
+	<li class="page_item page-item-377 current_page_item"><a href="https://www.ccera.ca/papers/memo-0006-a-precision-hydrogen-spectrometer-based-on-airspy-receivers/" aria-current="page">Memo 0006: A precision hydrogen spectrometer based on AirSpy receivers</a></li>
+	<li class="page_item page-item-383"><a href="https://www.ccera.ca/papers/memo-0008-a-cheap-simple-fx-correlator/">Memo 0008: A cheap, simple FX correlator</a></li>
+	<li class="page_item page-item-390"><a href="https://www.ccera.ca/papers/memo-9-the-idea-experiment-amateurs-looking-for-d1/">Memo 0009: The IDEA experiment: Amateurs looking for D1</a></li>
+	<li class="page_item page-item-395"><a href="https://www.ccera.ca/papers/memo-0010-rfi-excision-techniques-for-riometry/">Memo 0010: RFI excision techniques for riometry</a></li>
+	<li class="page_item page-item-401"><a href="https://www.ccera.ca/papers/memo-0011-a-21cm-map-of-the-northern-sky/">Memo 0011: A 21cm map of the northern sky</a></li>
+	<li class="page_item page-item-452"><a href="https://www.ccera.ca/papers/memo-12-a-pulsar-observing-capability-at-ccera/">Memo 0012: A pulsar observing capability at CCERA</a></li>
+	<li class="page_item page-item-239"><a href="https://www.ccera.ca/papers/rtlsdr-based-software-defined-radio-alternative-to-switched-radiometers-for-continuum-radio-astronomy/">RTLSDR-based, Software Defined Radio Alternative to Switched Radiometers for Continuum Radio Astronomy</a></li>
+</ul>
+</li>
+<li class="page_item page-item-27"><a href="https://www.ccera.ca/software/">Software</a></li>
+<li class="page_item page-item-186"><a href="https://www.ccera.ca/store/">Store</a></li>
+</ul>			</nav>
+		</div>
+
+		
+			<div id="custom-header">
+
+				
+					<img src="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-cropped-ccera-backgorund.jpg" srcset="https://www.ccera.ca/wp-content/uploads/2016/10/cropped-cropped-ccera-backgorund.jpg 1320w, https://www.ccera.ca/wp-content/uploads/2016/10/cropped-cropped-ccera-backgorund-300x45.jpg 300w, https://www.ccera.ca/wp-content/uploads/2016/10/cropped-cropped-ccera-backgorund-768x116.jpg 768w, https://www.ccera.ca/wp-content/uploads/2016/10/cropped-cropped-ccera-backgorund-1024x155.jpg 1024w" width="1320" height="200" alt="Canadian Centre for Experimental Radio Astronomy">
+
+				
+			</div>
+
+		
+	<div id="wrap" class="clearfix">
+		
+		<section id="content" class="primary" role="main">
+		
+					
+		
+	<div id="post-377" class="post-377 page type-page status-publish hentry">
+				
+		<h1 class="page-title">Memo 0006: A precision hydrogen spectrometer based on AirSpy receivers</h1>
+		<div class="entry clearfix">
+			<p>Canadian Centre for Experimental Radio Astronomy http://www.ccera.ca</p>
+<p>Memo: 0006 A precision hydrogen spectrometer based on AirSpy receivers</p>
+<p>To: Interested parties<br />
+Cc: Open Source Radio Telescopes<br />
+From: Marcus Leech, mleech@ripnet.com<br />
+Date: Nov 13, 2017</p>
+<h2>Subject: AirSpy Receivers for hydrogen line spectroscopy</h2>
+<p>This memorandum describes the design of a precision spectrometer receiver based on AirSpy SDR receivers and supporting auxiliary hardware and software.</p>
+<h2>Hydrogen Line Spectroscopy</h2>
+<p>The hydrogen line, with a rest frequency of 1420.4057517662 MHz (21.11cm) occupies a special place in the menagerie emissions from the Cosmos. Interstellar space is “full” of neutral hydrogen, which occasionally undergoes a hyper-fine transition of the electron spin, producing a single photon at 21.11cm. The spatial density of this hydrogen is low—an atom or two per cubic meter. The temporal density is also low—perhaps 1 event per 1e5 to 1e6 years. But along any given line of site, there are a tremendous number of these hydrogen atoms.</p>
+<p>Since interstellar hydrogen is ubiquitous, most of it can be easily detected by a small-scale observatory, with modest equipment.</p>
+<p>Mapping the spatial distribution of hydrogen across the sky, along with the apparent frequency shifts caused by Doppler effect, allows the dedicated observer to calculate the rotation-curve of our galaxy.</p>
+<h3>Antique Analog Spectrometers</h3>
+<p>In a “traditional” (or, realistically, antique) spectrometer, signal frequency components are extracted by sweeping a narrow-band receiver through a frequency range, with a power detector connected to the back of the receiver. The current frequency and power-levels are recorded, producing a spectral estimate across the sweep frequency range.</p>
+<h3>FFT Digital Spectrometers</h3>
+<p>In modern receiving systems for radio astronomy, the bandwidth of interest is digitized prior to any further manipulations being performed on the signal bandwidth. What this means is that it is easy to use Fourier Analysis on the signal to extract the frequency components of that signal.</p>
+<p>In our case, we digitize the signal bandwidth (2.5MHz centered on the hydrogen-line reset frequency) using an AirSpy SDR-based receiver, and use the Gnu Radio toolkit to process the signal through a Fast Fourier Transform (FFT) function.</p>
+<p>The Gnu Radio flow-graph is shown below:</p>
+<div id="attachment_378" style="width: 519px" class="wp-caption aligncenter"><a href="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow.jpg"><img aria-describedby="caption-attachment-378" class="wp-image-378" src="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow-300x223.jpg" alt="GnuRadio Flow Diagram" width="509" height="378" srcset="https://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow-300x223.jpg 300w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow-768x571.jpg 768w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow-1024x762.jpg 1024w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-1-GnuRadioFlow.jpg 1780w" sizes="(max-width: 509px) 100vw, 509px" /></a><p id="caption-attachment-378" class="wp-caption-text">GnuRadio Flow-graph for Spectrometry</p></div>
+<h3>Main flow-graph elements</h3>
+<h4>Osmocom Source</h4>
+<p>The source block is unremarkable—in our case, it is configured to operate at 10Msps, using an AirSpy input device.</p>
+<h4>Decimating FIR Filter</h4>
+<p>This block consumes the 10Msps input from the AirSpy and filters and decimates the signal to 2.5Msps, providing roughly 2.2MHz of usable bandwidth.</p>
+<h4>Rotator</h4>
+<p>This block is used to provide fine frequency adjustment. This is necessary to ensure that the central frequency is “exact”, as synthesizers generally have a small-but-finite frequency precision. In more advanced SDRs, the precision of the synthesizer is accounted for in FPGAbased DSP code, but AirSpy has very little “on board” DSP functionality.</p>
+<h4>Log Power FFT</h4>
+<p>This block, as its name suggests, computes a FFT of the input signal, then computes the magnitude -squared (thus, power) component, and then converts into dB form. It also performs averaging, via a simple single-pole-IIR function.</p>
+<p>The block is configurable with respect to FFT size (we tend to use 8192 bins), alpha value for the single-pole-IIR computation, and a so-called frame rate. This rate is the rate at which FFT computations are performed over the incoming time-domain sample stream. In an ideal situation, the frame rate simply be sample-rate/number-of-bins. But in our case, due to our computing architecture, we cannot quite compute FFTs in “real time”. Instead, we use a framerate that is approximately 1/3rd of “real time”, and then use averaging to make up for the loss in sensitivity that results.</p>
+<h4>Probe Signal Vector</h4>
+<p>The vector of dB values from the FFT is “terminated” in a probe block. This block can be “probed” at a leisurely pace and then logged locally, or sent via TCP to a “gatherer” computer.</p>
+<h4>Data-dumper secondary flow</h4>
+<p>The rest of the flow-graph involves extracting data from the “probe” and sending it via TCP to a central computer where it is further integrated, tagged, and logged. This data is sent at a rate of approximately 2Hz, and the “logger” integrates and dumps every 90 seconds.</p>
+<h3>Potential Sources of Error</h3>
+<p>An astronomical spectrometer measures two quantities—the Doppler shift (as represented by a frequency offset), and the brightness.</p>
+<p>Both of these quantities are subject to instrumental inaccuracies and systematic error.</p>
+<h4>Fixed Frequency Offset Error</h4>
+<p>It is the case that no electronic oscillator is “perfect”, and those found in radio receivers are no exception. The frequency synthesizers that are used in modern SDR receivers have a small-butfinite tuning precision. In the case of the AirSpy, at the hydrogen-line rest frequency, that resulting “imprecision” means that the synthesizer in the tuner is “off” by 20Hz. We compensate for that fixed offset by including the Rotator block in the flow-graph above. AT the hydrogen line frequency, a 20Hz offset means a Doppler velocity error of 4.2m/sec. This is very small, but since we have the means to compensate cheaply, we do so.</p>
+<h4>Frequency Uncertainty Error</h4>
+<p>Frequency synthesizers require a reference clock in order to produce the final frequency that is used to down-convert the “sky” frequency to baseband. The AirSpy has an internal reference clock with a frequency uncertainty of approximately 5.0e-7 Hz, which is about 710Hz at the line frequency, or approximately 149m/sec represented as a doppler uncertainty.</p>
+<p>Many SDRs include the ability to use an external reference clock, usually at 10MHz. The AirSpy supports an external 10Mhz clock with an amplitude of no greater than 3.3V. The CCERA spectrometer can select among 3 different clock-sources that are external to the AirSpy:</p>
+<ul>
+<li>An insulated, oven-controlled, crystal oscillator, giving 2.0e-8 frequency uncertainty.</li>
+<li>A GPS disciplined oscillator, giving, 1.0e-10 frequency uncertainty.</li>
+<li>A Rubidum-cell 10MHz reference, giving 1.0e-11 frequency uncertainty.</li>
+</ul>
+<p>It is interesting to note with a frequency uncertainty of 1.0e-11, Doppler measurements down to 0.3cm/sec could, in a spherical cow sense, be achieved.</p>
+<h4>Passband Spectral Response Uncertainty</h4>
+<p>Any real-world receiver system will have a non-uniform magnitude response across its passband. Such non-uniformity will be the convolution of the individual responses of system components.</p>
+<p>There are two main types of such non-uniform response that contribute to uncertainty about spectral features extracted from the data samples. One of which is pass-band slope, and the other is pass-band ripple. Slope across the pass-band can often be as much as 1dB, while ripple is usually on the order of 0.1 to 0.2dB. The magnitude of these components is easily large enough to provide sources of uncertainty and ambiguity in spectral measurements whose “real” features are barely larger than the inherent instrument response.</p>
+<p>The mechanism that we use at CCERA to deal with these is to use a “dark slide” consisting of several layers of carbon-filled foam that are placed in front of the feeds while measurements of the system response are taken. The carbon-foam acts as a uniform noise source so that any nonuniform response is due entirely to the instrumentation.</p>
+<p>Once that data is available, it can be used as part of a “normalization” process to good-quality spectral estimates from the raw FFT data.</p>
+<h4>Linearity Errors</h4>
+<p>Analog radio receiver systems are known to have operating regions where they operate in a largely-linear fashion, and regions where they don&#8217;t. There are many factors that contribute to this, including mixers, amplifiers, ADCs, filters, switches, etc.</p>
+<p>A useful approach is to eliminate, where possible, those situations where non-linearity can creep into the system. A useful first approach is to ensure that the RF chain is rigorously filtered as early as possible in the receive chain, and that filtering is repeated throughout. In our design, we filter between the first two LNA stages, and again right in front of the receiver. Additionally, the feed structure itself (a circular wave-guide) affords significant filtering below the cur-off frequency of approximately 1.1GHz. Filtering so that most of your system only ever “sees” the quite-weak astronomical sources in the sky means that it is unlikely to enter into the non-linear regions of amplifier operation.</p>
+<p>Further, we adjust our gain so that the ambient sky noise “fills” about 70% of the available ADC bits. This gives adequate headroom to assure linear operation of the ADC, while maximizing sensitivity given the above constraint.</p>
+<h4>Radio Frequency Interference</h4>
+<p>Radio frequency interference, or RFI, is a constant and growing concern. The hydrogen-line band, from 1420 to 1427 MHz is notionally “reserved” for radio astronomy, but in practice can sometimes be contaminated with unintended signals. Is is frequently the case that such signals originate within the radio telescope instrumentation itself.</p>
+<p>The hydrogen-line spectrometer suffers from a strong “spur” at exactly 1420MHz, created by the 10MHz clock circuitry producing the 142nd harmonic. We simply delete-and-smooth that narrow-band “spur” in post-processing.</p>
+<h4>Brightness Estimate Uncertainty</h4>
+<p>For rotation-curve studies, the absolute brightness of the hydrogen-line spectral features is not that important compared with the doppler-velocity estimates.</p>
+<p>However, for purposes of making high-information-content maps, the ability to derive a consistent brightness estimate is exceedingly useful.</p>
+<p>Several factors contribute to uncertainty involving the magnitude of spectral features, and how they relate to apparent sky brightness.</p>
+<p>In any radio receiver system, the overall system gain, and apparent noise temperature will vary with time. This time-varying property is most strongly coupled to the ambient temperature of the various gain-related components in the system, but other factors such as temperature changes in the antenna spill-over regions, noise in the antenna sidelobes, etc, also play a role.</p>
+<p>One approach to this problem with spectral data is to make several simplifying assumptions, in order to derive a very-crude sky-brightness estimate.</p>
+<p>If one assumes that system noise temperature, Tsys, remains within some small bounds, and that gain remains within some small bounds, then one can produce a crude estimate by observing that:</p>
+<p style="padding-left: 60px;"><em>P ~= G(Tsys+Tsky)</em></p>
+<p>If we have a rough estimate for Tsys, and we assume that Tsky for the “baseline” portions of the spectral estimate is fixed within the range of perhaps 15-20K (which is reasonable at 21cm), then it is a simple matter of algebra to convert “normalized” (baseline-subtracted) spectral estimates into brightness estimates. A modification of this approach would be to consult online sky maps for Tsky estimates near 21cm (perhaps at 1415MHz), and use that data to set Tsky for any given measurement at a given RA/DEC in the data. But in a sense, that feels like “cheating”.</p>
+<p>A better method, and one which CCERA is working towards, is to use a routine calibration procedure. In our case, that will consist of electronically switching the entire receive chain after the feed between the feed, and a temperature-controlled termination. If one switches the receiver chain to a controlled load on a regular basis (a few times per day), it allows for good-quality calibration of the instrument. In the case of CCERA, the terminator will be maintained at 340K at all times, along with the two-stage LNA. This both provides a terminator with a known blackbody equivalent temperature, and stabilizes the temperature, and thus gain and noise-figure of the LNA.</p>
+<p>What this means is that there will always be “fresh” dark-slide data, and that data will represent a noise source with a fixed, stable, black-body temperature of 340K. A previous memorandum in this series described the so-called “thermal stage” we use to achieve this.</p>
+<h4>FFT Resolution</h4>
+<p>The FFT resolution directly determines the Doppler velocity resolution provided by the system. In the current configuration, we use an FFT resolution of 8192 bins, which amounts to a binwidth of approximately 305Hz, or 64m/sec.</p>
+<p>If it is desired to achieve higher Doppler velocity resolution (commensurate with the underlying frequency uncertainties previously discussed), then using a larger number of FFT bins is easily achievable at the expense of more disk storage space.</p>
+<h3>System Design</h3>
+<p>Shown below is a high-level diagram of the spectrometer system:</p>
+<div id="attachment_379" style="width: 538px" class="wp-caption aligncenter"><a href="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-2-SchematicDesign.jpg"><img aria-describedby="caption-attachment-379" loading="lazy" class=" wp-image-379" src="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-2-SchematicDesign-300x95.jpg" alt="High-level schematic layout for the Spectrometer" width="528" height="167" srcset="https://www.ccera.ca/wp-content/uploads/2020/02/Fig-2-SchematicDesign-300x95.jpg 300w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-2-SchematicDesign-768x243.jpg 768w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-2-SchematicDesign.jpg 995w" sizes="(max-width: 528px) 100vw, 528px" /></a><p id="caption-attachment-379" class="wp-caption-text">High-level schematic layout for the Spectrometer</p></div>
+<p>The receiver cabinet is shown in the image below.</p>
+<div id="attachment_380" style="width: 446px" class="wp-caption aligncenter"><a href="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-3-ReceiverCabinet.jpg"><img aria-describedby="caption-attachment-380" loading="lazy" class=" wp-image-380" src="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-3-ReceiverCabinet-300x225.jpg" alt="The Receiver Cabinet" width="436" height="327" srcset="https://www.ccera.ca/wp-content/uploads/2020/02/Fig-3-ReceiverCabinet-300x225.jpg 300w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-3-ReceiverCabinet-768x576.jpg 768w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-3-ReceiverCabinet.jpg 832w" sizes="(max-width: 436px) 100vw, 436px" /></a><p id="caption-attachment-380" class="wp-caption-text">The Receiver Cabinet</p></div>
+<p>Of note are the AirSpy receivers in the bottom-left, the Odroid single-board computers, shown with blue heat-sinks, and the 10MHz ovenized oscillator, surrounded by pink high-density styrofoam. The final filters are located outside the receiver cabinet, to allow easy experimental reconfiguration for other projects.</p>
+<p>The power-supply provides +12VDC for the ovenized oscillator, and +5VDC for the Odroid single-board computers and AirSpy receivers.</p>
+<h3>Typical Results</h3>
+<p>Here we show a snapshot of the hydrogen spectrum in the Cygnus region.</p>
+<div id="attachment_381" style="width: 575px" class="wp-caption aligncenter"><a href="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion.jpg"><img aria-describedby="caption-attachment-381" loading="lazy" class=" wp-image-381" src="http://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion-300x164.jpg" alt="Sample spectrum: Cygnus Region" width="565" height="309" srcset="https://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion-300x164.jpg 300w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion-768x419.jpg 768w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion-1024x559.jpg 1024w, https://www.ccera.ca/wp-content/uploads/2020/02/Fig-4-Spectrum-CygnusRegion.jpg 1100w" sizes="(max-width: 565px) 100vw, 565px" /></a><p id="caption-attachment-381" class="wp-caption-text">Sample spectrum: Cygnus Region</p></div>
+<h3>Conclusions</h3>
+<p>We show a system design that is capable of producing high-quality spectral estimates for the 21cm hydrogen line. In the future, we will be able to improve brightness estimates considerably using techniques discussed in this memorandum.</p>
+		
+		</div>
+		
+	</div>		
+		
+
+		
+		</section>
+		
+		
+	<section id="sidebar" class="secondary clearfix" role="complementary">
+
+		
+		<aside id="recent-posts-2" class="widget widget_recent_entries clearfix">
+		<h3 class="widgettitle"><span>Recent Posts</span></h3>
+		<ul>
+											<li>
+					<a href="https://www.ccera.ca/uncategorized/new-memo-available/">New memo available</a>
+									</li>
+											<li>
+					<a href="https://www.ccera.ca/uncategorized/website-restored-to-normal-operation/">Website restored to normal operation</a>
+									</li>
+											<li>
+					<a href="https://www.ccera.ca/uncategorized/ccera-website-damaged/">CCERA website damaged</a>
+									</li>
+											<li>
+					<a href="https://www.ccera.ca/uncategorized/ccera-negotiates-access-to-former-nato-satellite-ground-station/">CCERA Negotiates Access to former-NATO Satellite Ground Station</a>
+									</li>
+											<li>
+					<a href="https://www.ccera.ca/uncategorized/ccera-leaves-smiths-falls-moves-to-rideau-ferry-on/">CCERA leaves Smiths Falls, moves to Rideau Ferry, ON</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive clearfix"><h3 class="widgettitle"><span>Archives</span></h3>
+			<ul>
+					<li><a href='https://www.ccera.ca/2022/10/'>October 2022</a></li>
+	<li><a href='https://www.ccera.ca/2022/08/'>August 2022</a></li>
+	<li><a href='https://www.ccera.ca/2022/07/'>July 2022</a></li>
+	<li><a href='https://www.ccera.ca/2022/05/'>May 2022</a></li>
+	<li><a href='https://www.ccera.ca/2021/05/'>May 2021</a></li>
+	<li><a href='https://www.ccera.ca/2020/10/'>October 2020</a></li>
+	<li><a href='https://www.ccera.ca/2020/06/'>June 2020</a></li>
+	<li><a href='https://www.ccera.ca/2020/05/'>May 2020</a></li>
+	<li><a href='https://www.ccera.ca/2020/02/'>February 2020</a></li>
+	<li><a href='https://www.ccera.ca/2019/09/'>September 2019</a></li>
+	<li><a href='https://www.ccera.ca/2018/05/'>May 2018</a></li>
+	<li><a href='https://www.ccera.ca/2018/03/'>March 2018</a></li>
+	<li><a href='https://www.ccera.ca/2017/10/'>October 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/09/'>September 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/08/'>August 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/06/'>June 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/05/'>May 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/04/'>April 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/03/'>March 2017</a></li>
+	<li><a href='https://www.ccera.ca/2017/01/'>January 2017</a></li>
+	<li><a href='https://www.ccera.ca/2016/12/'>December 2016</a></li>
+	<li><a href='https://www.ccera.ca/2016/11/'>November 2016</a></li>
+	<li><a href='https://www.ccera.ca/2016/10/'>October 2016</a></li>
+			</ul>
+
+			</aside><aside id="linkcat-2" class="widget widget_links clearfix"><h3 class="widgettitle"><span>Blogroll</span></h3>
+	<ul class='xoxo blogroll'>
+<li><a href="https://opensourceradiotelescopes.org/" title="An organization started at NRAO to promote open-source designs for small radio telescopes">Open Source Radio Telescopes</a></li>
+<li><a href="https://www.gofundme.com/help-make-the-ccera-a-reality-2tvbzx8" rel="noopener" target="_blank">Our fundraising campaign, via GoFundMe</a></li>
+<li><a href="http://www.sbrac.org" rel="noopener" target="_blank">Our old project, our old site</a></li>
+<li><a href="http://www.gallipeaucentre.com/" rel="noopener" target="_blank">The campus where our office/lab is</a></li>
+
+	</ul>
+</aside>
+<aside id="text-5" class="widget widget_text clearfix"><h3 class="widgettitle"><span>Our partners</span></h3>			<div class="textwidget"><a href="http://www.ettus.com" target="_blank" rel="noopener">Ettus Research</a> 
+<p>
+<a href="http://www.airspy.com"target="_blank">Airspy</a>
+
+</div>
+		</aside>
+	</section>		
+	</div>
+	
+
+	
+	<div id="footer-wrap">
+
+		<footer id="footer" class="container clearfix" role="contentinfo">
+
+			<nav id="footernav" class="clearfix" role="navigation">
+							</nav>
+
+			<div id="footer-text">
+				
+	<span class="credit-link">
+		Powered by <a href="http://wordpress.org" title="WordPress">WordPress</a> and <a href="https://themezee.com/themes/courage/" title="Courage WordPress Theme">Courage</a>.	</span>
+
+			</div>
+
+		</footer>
+
+	</div>
+
+</div><!-- end #wrapper -->
+
+</body>
+</html>
